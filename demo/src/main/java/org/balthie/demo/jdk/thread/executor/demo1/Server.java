@@ -8,6 +8,7 @@ package org.balthie.demo.jdk.thread.executor.demo1;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,11 @@ public class Server
     {
         super();
         this.executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+        
+        // 任务调度执行器
+//        ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(2);
+//        scheduleService.schedule(callable, delay, unit);
+//        scheduleService.scheduleAtFixedRate(command, initialDelay, period, unit);
     }
     
     public void executeTask(Task task)
