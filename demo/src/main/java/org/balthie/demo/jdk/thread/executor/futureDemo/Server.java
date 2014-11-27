@@ -17,7 +17,7 @@ public class Server {
 	List<Future<Integer>> resultList = new ArrayList<Future<Integer>>();
 	
 	
-	
+	    
 	public static void main(String[] args) {
 		Random random = new Random();
 		Server server = new Server();

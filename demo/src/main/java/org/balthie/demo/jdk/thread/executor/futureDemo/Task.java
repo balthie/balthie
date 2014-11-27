@@ -25,7 +25,7 @@ public class Task implements Callable<Integer> {
 				TimeUnit.MILLISECONDS.sleep(50);
 			}
 		}
-
+    
 		System.out.println(MessageFormat.format(
 				"【{0}】Task【{1}】: end on 【{2,time, HH:mm:ss:ms}】", Thread
 						.currentThread().getName(), name, new Date()));
