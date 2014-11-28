@@ -8,7 +8,6 @@ package org.balthie.demo.jdk.thread.executor.demo1;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -31,9 +30,9 @@ public class Server
         this.executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
         
         // 任务调度执行器
-//        ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(2);
-//        scheduleService.schedule(callable, delay, unit);
-//        scheduleService.scheduleAtFixedRate(command, initialDelay, period, unit);
+        // ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(2);
+        // scheduleService.schedule(callable, delay, unit);
+        // scheduleService.scheduleAtFixedRate(command, initialDelay, period, unit);
     }
     
     public void executeTask(Task task)
@@ -76,15 +75,17 @@ public class Server
         {
             Task t = new Task(new Date(), " Task " + i);
             server.executeTask(t);
-         
-            if(i%10 == 0)
+            
+            if(i % 10 == 0)
             {
                 try
                 {
                     // 此方法将堵塞未开始执行的线程，直到所有？？已经开始执行的线程？？执行完成，或者到达超时时间
-                    System.out.println(MessageFormat.format("Server: awaitTermination begin at 【{0, time, HH:mm:ss:ms}】", new Date()));
+                    System.out.println(MessageFormat.format("Server: awaitTermination begin at 【{0, time, HH:mm:ss:ms}】",
+                            new Date()));
                     server.executor.awaitTermination(10, TimeUnit.SECONDS);
-                    System.out.println(MessageFormat.format("Server: awaitTermination end at 【{0, time, HH:mm:ss:ms}】", new Date()));
+                    System.out.println(MessageFormat.format("Server: awaitTermination end at 【{0, time, HH:mm:ss:ms}】",
+                            new Date()));
                 }
                 catch (InterruptedException e)
                 {
