@@ -8,7 +8,6 @@ package org.balthie.demo.jdk.thread.executor.demo1;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
