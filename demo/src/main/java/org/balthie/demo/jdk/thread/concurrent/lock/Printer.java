@@ -31,7 +31,7 @@ public class Printer
          
         // 在超时时间内等待获取锁，超时抛出中断异常
         // lock.tryLock(expTimeMills, TimeUnit.MILLISECONDS);
-        
+         
         lock.lock();
         
         try
