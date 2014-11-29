@@ -7,6 +7,7 @@ package org.balthie.demo.jdk.thread.concurrent.lock;
 
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -31,7 +32,7 @@ public class Printer
          
         // 在超时时间内等待获取锁，超时抛出中断异常
         // lock.tryLock(expTimeMills, TimeUnit.MILLISECONDS);
-        
+         
         lock.lock();
         
         try
