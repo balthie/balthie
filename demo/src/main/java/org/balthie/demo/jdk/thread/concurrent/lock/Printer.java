@@ -28,7 +28,7 @@ public class Printer
         
         // 获取锁失败，立即抛出中断异常
         // lock.lockInterruptibly();
-        
+         
         // 在超时时间内等待获取锁
         // lock.tryLock(expTimeMills, TimeUnit.MILLISECONDS);
         
