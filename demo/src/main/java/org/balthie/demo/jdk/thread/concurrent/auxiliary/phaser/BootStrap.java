@@ -10,7 +10,7 @@ public class BootStrap
     {
         System.out.println(MessageFormat.format(" search task being at【{0, time, HH:mm:ss:ms}】",
                 new Date()));
-        // 指定参与同步的线程数量
+        // 指定参与同步的线程数量 
         Phaser phaser = new Phaser(3);
         
         FileSearch program = new FileSearch("d:\\Program Files", "log", phaser);
@@ -27,6 +27,7 @@ public class BootStrap
         
         try
         {
+            //主线程等待子线程的终止
             t1.join();
             t2.join();
             t3.join();
