@@ -7,18 +7,27 @@ import java.util.Random;
 public class DocumentMock
 {
     private String[] words = {"the","hello","world","good","bye","to","you","pack","java","thread","pool","charm"};
-    
+     
     String[][] generateDocument(int numLines, int numWords, String word)
     {
         int counter = 0;
         String document[][] = new String[numLines][numWords];
-        Random r = new Random();
-        for(int i=0;i<numLines;i++)
+        Random r = new Random(); 
+        for(int i=0;i<numLines;i++) 
         {
             for(int j=0;j<numWords;j++)
             {
-                int index = r.nextInt(words.length);
-                document[i][j] = words[index];
+                int index = r.nextInt(words.length+1);
+                if(index < words.length)
+                {
+                    document[i][j] = words[index];
+                    
+                }
+                else
+                {
+                    document[i][j] = word;
+                }
+                
                 if(document[i][j].equals(word))
                 {
                     counter++;

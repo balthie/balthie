@@ -11,7 +11,7 @@ public class Printer
 
     public Printer()
     {
-        super();
+        super(); 
         // 提供两个资源访问计数器，最多同时有两个线程访问本资源
         this.semaphore = new Semaphore(2, true);
     }

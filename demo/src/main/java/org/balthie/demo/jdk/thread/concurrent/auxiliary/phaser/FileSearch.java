@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 
 public class FileSearch implements Runnable
 {

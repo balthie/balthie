@@ -7,7 +7,6 @@ package org.balthie.demo.jdk.thread.concurrent.lock;
 
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
