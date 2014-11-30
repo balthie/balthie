@@ -8,7 +8,7 @@ public class BootStrap
     {
         DocumentMock mock = new DocumentMock();
         String[][] document = mock.generateDocument(100, 1000, "the");
-        
+         
         ForkJoinPool pool = new ForkJoinPool();
         pool.execute(new DocumentTask(document, 0, 100, "the"));
     }
