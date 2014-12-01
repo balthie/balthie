@@ -2,6 +2,7 @@ package org.balthie.demo.jdk.thread.forkjoin.documentSearch;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.TimeUnit;
 
 public class LineTask extends RecursiveTask<Integer>
 {
@@ -15,7 +16,7 @@ public class LineTask extends RecursiveTask<Integer>
 
     public LineTask(String[] line, int start, int end, String word)
     {
-        super();
+        super(); 
         this.line = line;
         this.start = start;
         this.end = end;
@@ -49,16 +50,33 @@ public class LineTask extends RecursiveTask<Integer>
         return result;
     }
 
-    private int groupResults(Integer integer, Integer integer2)
+    private int groupResults(Integer integer1, Integer integer2)
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return integer1 + integer2;
     }
 
-    private int count(String[] line2, int start2, int end2, String word2)
+    private int count(String[] line, int start, int end, String word)
     {
-        // TODO Auto-generated method stub
-        return 0;
+        int counter = 0;
+        
+        for(String w : line)
+        {
+            if(word.equals(w))
+            {
+                counter++;
+            }
+        }
+        
+        try
+        { 
+            TimeUnit.MILLISECONDS.sleep(10);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        
+        return counter;
     }
     
 }
