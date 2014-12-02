@@ -27,6 +27,7 @@ public class BootStrap
         
         try
         {
+            //主线程等待子线程的终止
             t1.join();
             t2.join();
             t3.join();
