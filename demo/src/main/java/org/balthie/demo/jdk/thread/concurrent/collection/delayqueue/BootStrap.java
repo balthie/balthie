@@ -8,7 +8,6 @@ package org.balthie.demo.jdk.thread.concurrent.collection.delayqueue;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.concurrent.DelayQueue;
-import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 /**
