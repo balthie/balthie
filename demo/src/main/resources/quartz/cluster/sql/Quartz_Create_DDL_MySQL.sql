@@ -1,0 +1,370 @@
+-- MySQL dump 10.13
+--
+-- Host: localhost    Database: quartz
+-- ------------------------------------------------------
+-- Server version	5.1.22-rc-community
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES gbk */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `QRTZ_BLOB_TRIGGERS`
+--
+drop database IF EXISTS quartz;
+create database quartz;
+use quartz;
+
+DROP TABLE IF EXISTS `QRTZ_BLOB_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_BLOB_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `BLOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `QRTZ_BLOB_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_BLOB_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_BLOB_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_BLOB_TRIGGERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_BLOB_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_CALENDARS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_CALENDARS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_CALENDARS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `CALENDAR_NAME` varchar(200) NOT NULL,
+  `CALENDAR` blob,
+  PRIMARY KEY (`SCHED_NAME`,`CALENDAR_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_CALENDARS`
+--
+
+LOCK TABLES `QRTZ_CALENDARS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_CALENDARS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_CALENDARS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_CRON_TRIGGERS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_CRON_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_CRON_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `CRON_EXPRESSION` varchar(200) NOT NULL,
+  `TIME_ZONE_ID` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `QRTZ_CRON_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_CRON_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_CRON_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_CRON_TRIGGERS` DISABLE KEYS */;
+INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('TestScheduler','Per5MinuteJob_trigger','Per5MinuteJob_group','20 /5 * * * ?','Asia/Shanghai'),('TestScheduler','PerMinuteJob_trigger','PerMinuteJob_group','10 /1 * * * ?','Asia/Shanghai');
+/*!40000 ALTER TABLE `QRTZ_CRON_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_FIRED_TRIGGERS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_FIRED_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_FIRED_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `ENTRY_ID` varchar(95) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `INSTANCE_NAME` varchar(200) NOT NULL,
+  `FIRED_TIME` bigint(20) NOT NULL,
+  `SCHED_TIME` bigint(20) NOT NULL,
+  `PRIORITY` int(11) NOT NULL,
+  `STATE` varchar(16) NOT NULL,
+  `JOB_NAME` varchar(200) DEFAULT NULL,
+  `JOB_GROUP` varchar(200) DEFAULT NULL,
+  `IS_NONCONCURRENT` bit(1) DEFAULT NULL,
+  `REQUESTS_RECOVERY` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`ENTRY_ID`),
+  KEY `IDX_QRTZ_FT_TRIG_INST_NAME` (`SCHED_NAME`,`INSTANCE_NAME`),
+  KEY `IDX_QRTZ_FT_INST_JOB_REQ_RCVRY` (`SCHED_NAME`,`INSTANCE_NAME`,`REQUESTS_RECOVERY`),
+  KEY `IDX_QRTZ_FT_J_G` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_FT_JG` (`SCHED_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_FT_T_G` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_FT_TG` (`SCHED_NAME`,`TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_FIRED_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_FIRED_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_FIRED_TRIGGERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_FIRED_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_JOB_DETAILS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_JOB_DETAILS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_JOB_DETAILS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `JOB_CLASS_NAME` varchar(250) NOT NULL,
+  `IS_DURABLE` bit(1) NOT NULL,
+  `IS_NONCONCURRENT` bit(1) NOT NULL,
+  `IS_UPDATE_DATA` bit(1) NOT NULL,
+  `REQUESTS_RECOVERY` bit(1) NOT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
+  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_JOB_DETAILS`
+--
+
+LOCK TABLES `QRTZ_JOB_DETAILS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_JOB_DETAILS` DISABLE KEYS */;
+INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('TestScheduler','Per5MinuteJob','Per5MinuteJob_group',NULL,'com.mama100.mp.marketing.common.quartz.cluster.job.Per5MinuteJob','\0','','','\0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap\�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap\�.\�(v\n\�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap��\�`\�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0countsr\0java.lang.Integer⠤���8\0I\0valuexr\0java.lang.Number��\���\�\0\0xp\0\0\0x\0'),('TestScheduler','PerMinuteJob','PerMinuteJob_group',NULL,'com.mama100.mp.marketing.common.quartz.cluster.job.PerMinuteJob','\0','','','\0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap\�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap\�.\�(v\n\�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap��\�`\�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0countsr\0java.lang.Integer⠤���8\0I\0valuexr\0java.lang.Number��\���\�\0\0xp\0\0\0x\0');
+/*!40000 ALTER TABLE `QRTZ_JOB_DETAILS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_LOCKS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_LOCKS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_LOCKS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `LOCK_NAME` varchar(40) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`LOCK_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_LOCKS`
+--
+
+LOCK TABLES `QRTZ_LOCKS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_LOCKS` DISABLE KEYS */;
+INSERT INTO `QRTZ_LOCKS` VALUES ('TestScheduler','STATE_ACCESS'),('TestScheduler','TRIGGER_ACCESS');
+/*!40000 ALTER TABLE `QRTZ_LOCKS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_PAUSED_TRIGGER_GRPS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_PAUSED_TRIGGER_GRPS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_PAUSED_TRIGGER_GRPS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_PAUSED_TRIGGER_GRPS`
+--
+
+LOCK TABLES `QRTZ_PAUSED_TRIGGER_GRPS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_PAUSED_TRIGGER_GRPS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_PAUSED_TRIGGER_GRPS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_SCHEDULER_STATE`
+--
+
+DROP TABLE IF EXISTS `QRTZ_SCHEDULER_STATE`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_SCHEDULER_STATE` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `INSTANCE_NAME` varchar(200) NOT NULL,
+  `LAST_CHECKIN_TIME` bigint(20) NOT NULL,
+  `CHECKIN_INTERVAL` bigint(20) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`INSTANCE_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_SCHEDULER_STATE`
+--
+
+LOCK TABLES `QRTZ_SCHEDULER_STATE` WRITE;
+/*!40000 ALTER TABLE `QRTZ_SCHEDULER_STATE` DISABLE KEYS */;
+INSERT INTO `QRTZ_SCHEDULER_STATE` VALUES ('TestScheduler','DC100501421137483060',1421137963592,7500);
+/*!40000 ALTER TABLE `QRTZ_SCHEDULER_STATE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_SIMPLE_TRIGGERS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_SIMPLE_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_SIMPLE_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `REPEAT_COUNT` bigint(20) NOT NULL,
+  `REPEAT_INTERVAL` bigint(20) NOT NULL,
+  `TIMES_TRIGGERED` bigint(20) NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_SIMPLE_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_SIMPLE_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_SIMPLE_TRIGGERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_SIMPLE_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_SIMPROP_TRIGGERS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_SIMPROP_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_SIMPROP_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `STR_PROP_1` varchar(512) DEFAULT NULL,
+  `STR_PROP_2` varchar(512) DEFAULT NULL,
+  `STR_PROP_3` varchar(512) DEFAULT NULL,
+  `INT_PROP_1` int(11) DEFAULT NULL,
+  `INT_PROP_2` int(11) DEFAULT NULL,
+  `LONG_PROP_1` bigint(20) DEFAULT NULL,
+  `LONG_PROP_2` bigint(20) DEFAULT NULL,
+  `DEC_PROP_1` decimal(13,4) DEFAULT NULL,
+  `DEC_PROP_2` decimal(13,4) DEFAULT NULL,
+  `BOOL_PROP_1` bit(1) DEFAULT NULL,
+  `BOOL_PROP_2` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_SIMPROP_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_SIMPROP_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_SIMPROP_TRIGGERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `QRTZ_SIMPROP_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `QRTZ_TRIGGERS`
+--
+
+DROP TABLE IF EXISTS `QRTZ_TRIGGERS`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = gbk;
+CREATE TABLE `QRTZ_TRIGGERS` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `NEXT_FIRE_TIME` bigint(20) DEFAULT NULL,
+  `PREV_FIRE_TIME` bigint(20) DEFAULT NULL,
+  `PRIORITY` int(11) DEFAULT NULL,
+  `TRIGGER_STATE` varchar(16) NOT NULL,
+  `TRIGGER_TYPE` varchar(8) NOT NULL,
+  `START_TIME` bigint(20) NOT NULL,
+  `END_TIME` bigint(20) DEFAULT NULL,
+  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
+  `MISFIRE_INSTR` smallint(6) DEFAULT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  KEY `SCHED_NAME` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
+  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  CONSTRAINT `QRTZ_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `QRTZ_JOB_DETAILS` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `QRTZ_TRIGGERS`
+--
+
+LOCK TABLES `QRTZ_TRIGGERS` WRITE;
+/*!40000 ALTER TABLE `QRTZ_TRIGGERS` DISABLE KEYS */;
+INSERT INTO `QRTZ_TRIGGERS` VALUES ('TestScheduler','Per5MinuteJob_trigger','Per5MinuteJob_group','Per5MinuteJob','Per5MinuteJob_group',NULL,1421138120000,1421137820000,5,'WAITING','CRON',1421137543000,0,NULL,0,''),('TestScheduler','PerMinuteJob_trigger','PerMinuteJob_group','PerMinuteJob','PerMinuteJob_group',NULL,1421137990000,1421137930000,5,'WAITING','CRON',1421137483000,0,NULL,0,'');
+/*!40000 ALTER TABLE `QRTZ_TRIGGERS` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-01-28  1:29:13
