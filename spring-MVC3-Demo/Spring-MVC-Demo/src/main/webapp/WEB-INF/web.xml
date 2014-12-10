@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>demo.root</param-value>
+	</context-param>
+	
+	<context-param>
+	   	<param-name>log4jConfigLocation</param-name>
+	   	<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	<!-- spring mvc 采用双亲容器策略，可选择不启动 ApplicationContext， ApplicationContext加载的bean整个webApplication可见 
+		Spring lets you define multiple contexts in a parent-child hierarchy. The 
+		applicationContext.xml defines the beans for the "root webapp context", i.e. 
+		the context associated with the webapp. The spring-servlet.xml (or whatever 
+		else you call it) defines the beans for one servlet's app context. There 
+		can be many of these in a webapp, one per Spring servlet (e.g. spring1-servlet.xml 
+		for servlet spring1, spring2-servlet.xml for servlet spring2). Beans in spring-servlet.xml 
+		can reference beans in applicationContext.xml, but not vice versa. All Spring 
+		MVC controllers must go in the spring-servlet.xml context. In most simple 
+		cases, the applicationContext.xml context is unnecessary. It is generally 
+		used to contain beans that are shared between all servlets in a webapp. If 
+		you only have one servlet, then there's not really much point, unless you 
+		have a specific use for it. -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name> <param-value> 
+		/WEB-INF/applicationContext.xml </param-value> </context-param> <listener> 
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+		</listener> -->
+
+
+	<!-- 如果spring容器中的Bean需要request,session,globalsession 作用域的支持,spring容器本身就必须获得web容器的HTTP请求事件,以HTTP请求的事件"驱动"Bean作用域的控制逻辑. -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+
+	<filter>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>encoding-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Spring MVC Services Servlet -->
+	<!-- DispatchServlet遵循“契约优于配置”的原则，在大多数情况下，你无须进行额外的配置，只需按契约行事即可。 对DispatchServlet的默认规则进行调整，可以通过常用的一些配置参数，可通过<servlet>的<init-param>指定。 -->
+	<!-- namespace：DispatchServlet对应的命名空间，默认是<servlet-name>-servlet，用以构造Spring配置文件的路径。现实指定该属性后，配置文件对应的路径为：WEB-INF/<namespace>.xml 
+		而非WEB-INF/<servlet-name>-servlet.xml。如果这里把namespase改成了simpleSpringMVC，则对应的Spring的配置文件为WEB-INF/simpleSpringMVC.xml。 -->
+	<!-- contextConfigLocation：如果DispatchServlet上下文对应的spring配置文件有多个，则可使用该属性按照spring资源路径的方式指定。 
+		publishContext：boolean类型属性，默认值为true。DispatchServlet根据该属性决定是否将WebApplicationContext发布到ServletContext的属性列表中，以便调用可以借道ServletContext找到WebApplicationContext实例，对应的属性名为DispatchServlet#getServletContextAttributeName()返回的值。 
+		publishEvents：boolean类型属性。当DispatchServlet处理完一个请求后，是否需要向容器发布一个ServletRequestHandledEvent事件，默认为true。如果容器中没有任何事件监听器，可以将此属性设置为false，以便提高运行性能。 -->
+	<servlet>
+		<servlet-name>services</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<!-- 默认是 WEB-INF/<servlet-name>-servlet -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:conf/spring/services-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>services</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
