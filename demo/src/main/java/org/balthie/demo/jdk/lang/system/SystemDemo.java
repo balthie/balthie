@@ -25,5 +25,11 @@ public class SystemDemo
         System.out.println("file_separator:" + System.getProperty("file.separator"));
         System.out.println("path_separator:" + System.getProperty("path.separator"));
         System.out.println("line_separator:" + System.getProperty("line.separator"));
+        
+        /**
+         * 读取jvm参数
+         */
+        String productMode = (String) System.getProperties().get("productMode");
+        System.out.println(productMode);
     }
 }
