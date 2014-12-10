@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class UDPSocketClient
 {
- private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketClient.class);
+     private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketClient.class);
     
     private byte[] buffer = new byte[1024];
     
@@ -28,8 +28,10 @@ public class UDPSocketClient
     /**
      * 设置超时时间，该方法必须在bind方法之后使用.
      * 
-     * @param timeout 超时时间
-     * @throws Exception Creation date: 2007-8-16 - 下午10:55:12
+     * @param timeout
+     *            超时时间
+     * @throws Exception
+     *             Creation date: 2007-8-16 - 下午10:55:12
      */
     public final void setSoTimeout(final int timeout) throws Exception
     {
@@ -40,7 +42,8 @@ public class UDPSocketClient
      * 获得超时时间.
      * 
      * @return 返回超时时间
-     * @throws Exception Creation date: 2007-8-16 - 下午10:55:25
+     * @throws Exception
+     *             Creation date: 2007-8-16 - 下午10:55:25
      */
     public final int getSoTimeout() throws Exception
     {
@@ -55,11 +58,15 @@ public class UDPSocketClient
     /**
      * 向指定的服务端发送数据信息.
      * 
-     * @param host 服务器主机地址
-     * @param port 服务端端口
-     * @param bytes 发送的数据信息
+     * @param host
+     *            服务器主机地址
+     * @param port
+     *            服务端端口
+     * @param bytes
+     *            发送的数据信息
      * @return 返回构造后俄数据报
-     * @throws IOException Creation date: 2007-8-16 - 下午11:02:41
+     * @throws IOException
+     *             Creation date: 2007-8-16 - 下午11:02:41
      */
     public final DatagramPacket send(final String host, final int port, final byte[] bytes) throws IOException
     {
@@ -71,10 +78,13 @@ public class UDPSocketClient
     /**
      * 接收从指定的服务端发回的数据.
      * 
-     * @param lhost 服务端主机
-     * @param lport 服务端端口
+     * @param lhost
+     *            服务端主机
+     * @param lport
+     *            服务端端口
      * @return 返回从指定的服务端发回的数据.
-     * @throws Exception Creation date: 2007-8-16 - 下午10:52:36
+     * @throws Exception
+     *             Creation date: 2007-8-16 - 下午10:52:36
      */
     public final String receive(final String lhost, final int lport) throws Exception
     {
@@ -105,7 +115,8 @@ public class UDPSocketClient
      * 测试客户端发包和接收回应信息的方法.
      * 
      * @param args
-     * @throws Exception Creation date: 2007-8-16 - 下午11:03:54
+     * @throws Exception
+     *             Creation date: 2007-8-16 - 下午11:03:54
      */
     public static void main(String[] args) throws Exception
     {
