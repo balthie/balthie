@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class UDPSocketServer
 {
-private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.class);
+     private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.class);
     
     private byte[] buffer = new byte[10240];
     
@@ -27,12 +27,14 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     {
         super();
     }
-
+    
     /**
      * 构造函数，绑定主机和端口.
      * 
-     * @param host 主机
-     * @param port 端口
+     * @param host
+     *            主机
+     * @param port
+     *            端口
      * @throws Exception
      */
     public UDPSocketServer(String host, int port) throws Exception
@@ -49,7 +51,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     
     /**
      * @description 设置超时时间，该方法必须在bind方法之后使用.
-     * @param timeout 超时时间
+     * @param timeout
+     *            超时时间
      * @throws Exception
      */
     public final void setSoTimeout(int timeout) throws Exception
@@ -60,7 +63,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     /**
      * @description 获得超时时间.
      * @return 返回超时时间.
-     * @throws Exception 下午10:34:36
+     * @throws Exception
+     *             下午10:34:36
      */
     public final int getSoTimeout() throws Exception
     {
@@ -69,9 +73,12 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     
     /**
      * @description 绑定监听地址和端口.
-     * @param host 主机IP
-     * @param port 端口
-     * @throws SocketException Creation date: 2007-8-16 - 下午10:36:17
+     * @param host
+     *            主机IP
+     * @param port
+     *            端口
+     * @throws SocketException
+     *             Creation date: 2007-8-16 - 下午10:36:17
      */
     public final void bind(String host, int port) throws SocketException
     {
@@ -82,7 +89,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     /**
      * @description 接收数据包，该方法会造成线程阻塞.
      * @return 返回接收的数据串信息
-     * @throws IOException Creation date: 2007-8-16 - 下午10:38:24
+     * @throws IOException
+     *             Creation date: 2007-8-16 - 下午10:38:24
      */
     public final String receive() throws IOException
     {
@@ -91,14 +99,16 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
         orgIp = packet.getAddress().getHostAddress();
         String info = new String(packet.getData(), 0, packet.getLength());
         LOGGER.debug("接收信息：" + info);
-        System.out.println(info + " at " + System.currentTimeMillis() );
+        System.out.println(info + " at " + System.currentTimeMillis());
         return info;
     }
     
     /**
      * @description 将响应包发送给请求端.
-     * @param bytes 回应报文
-     * @throws IOException Creation date: 2007-8-16 - 下午11:05:31
+     * @param bytes
+     *            回应报文
+     * @throws IOException
+     *             Creation date: 2007-8-16 - 下午11:05:31
      */
     public final void response(String info) throws IOException
     {
@@ -110,7 +120,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     
     /**
      * @description 设置报文的缓冲长度.
-     * @param bufsize 缓冲长度 Creation date: 2007-8-16 - 下午10:47:49
+     * @param bufsize
+     *            缓冲长度 Creation date: 2007-8-16 - 下午10:47:49
      */
     public final void setLength(int bufsize)
     {
@@ -136,8 +147,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     }
     
     /**
-     * @description 关闭udp监听口.
-     * Creation date: 2007-8-16 - 下午10:49:23
+     * @description 关闭udp监听口. Creation date: 2007-8-16 - 下午10:49:23
      */
     public final void close()
     {
@@ -154,7 +164,8 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     /**
      * @description 测试方法.
      * @param args
-     * @throws Exception Creation date: 2007-8-16 - 下午10:49:50
+     * @throws Exception
+     *             Creation date: 2007-8-16 - 下午10:49:50
      */
     public static void main(String[] args) throws Exception
     {
@@ -171,7 +182,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(UDPSocketServer.cla
     /**
      * @createtime ： 2014年12月10日 下午9:13:07
      * @description 启动UDP端口监听
-      * @throws Exception
+     * @throws Exception
      */
     public void start() throws Exception
     {
