@@ -70,12 +70,10 @@ public class RAMStaticDataCacheTest extends RAMStaticDataCache<Foo>
     }
 
     @Override
-    protected Map<String, Collection<Foo>> queryByGroupIdDB(String groupId) throws Exception
+    protected Collection<Foo> queryByGroupIdDB(String groupId) throws Exception
     {
-        Map<String, Collection<Foo>> map = new HashMap<String, Collection<Foo>>();
-        map.put(groupId, datas.get(groupId));
         TimeUnit.SECONDS.sleep(2);
-        return map;
+        return datas.get(groupId);
     }
     
 }

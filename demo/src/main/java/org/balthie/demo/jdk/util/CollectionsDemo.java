@@ -7,6 +7,7 @@ package org.balthie.demo.jdk.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * @author：balthie + 10050
@@ -26,6 +27,9 @@ public class CollectionsDemo
     {
         //UnmodifiableCollection
         Collections.unmodifiableCollection(new ArrayList<String>());
+        
+        LinkedList<String> list =new LinkedList<String>();
+        
     }
 }
 

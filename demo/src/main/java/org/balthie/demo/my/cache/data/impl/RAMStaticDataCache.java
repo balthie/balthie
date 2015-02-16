@@ -66,12 +66,11 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
     /**
      * 根据分组条件增量加载原始数据
      * 
-     * @param groupId
-     *            分组条件
+     * @param groupId 分组条件
      * @return 根据条件分组后的原始数据
      * @throws Exception
      */
-    abstract protected Map<String, Collection<T>> queryByGroupIdDB(String groupId) throws Exception;
+    abstract protected Collection<T> queryByGroupIdDB(String groupId) throws Exception;
     
     /**
      * 向业务层暴露数据查询接口：根据分组条件，查询数据
@@ -99,16 +98,6 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
         
         LOGGER.debug(" queryByGroupId end ");
         return allData.get(groupId);
-    }
-    
-    protected Map<String, Collection<T>> queryAll()
-    {
-        if(!this.cacheManager.isAllRefreshed())
-        
-        {
-            this.cacheManager.forceRefreshAll();
-        }
-        return allData;
     }
     
     /**
@@ -206,7 +195,9 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
             LOGGER.debug(" forceRefreshByGroupId  begin  groupId = " + groupId);
             try
             {
-                tempDataMap = RAMStaticDataCache.this.queryByGroupIdDB(groupId);
+                Collection<T> dataList = RAMStaticDataCache.this.queryByGroupIdDB(groupId); 
+                tempDataMap = new HashMap<String, Collection<T>>();
+                tempDataMap.put(groupId, dataList);
                 
                 // 更新缓存中的数据
                 if(tempDataMap != null && tempDataMap.size() > 0)
@@ -251,8 +242,7 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
         /**
          * 查询缓存数据是否已经超时
          * 
-         * @param groupId
-         *            分组条件
+         * @param groupId 分组条件
          * @result 数据是否已超时
          */
         public boolean isDataTimeOut(String groupId)
@@ -273,10 +263,8 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
          * @author：balthie + 10050
          * @createtime ： 2013-12-30 下午4:24:51
          * @description 记录数据刷新时间
-         * @param gourpId
-         *            分组id
-         * @param timeMills
-         *            Date.time()
+         * @param gourpId 分组id
+         * @param timeMills Date.time()
          */
         public void updateTimeMills(String gourpId, Long timeMills)
         {
