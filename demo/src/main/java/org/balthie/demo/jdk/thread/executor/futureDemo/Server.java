@@ -97,7 +97,6 @@ public class Server
                     e.printStackTrace();
                 }
             }
-            
         }
         while (this.executor.getCompletedTaskCount() <= resultSize);
         
