@@ -10,6 +10,8 @@ public class ConcurrentHashMapDemo
     public static void main(String[] args)
     {
         /**
+         * http://www.cnblogs.com/ITtangtang/p/3948786.html
+         * 
          * ConcurrentHashMap -- segment -- table -- HashEntry
          * 
          * @1 首先ConcurrentHashMap先把数据分到0-16个默认创建好的数组中，数组里面的元素就叫segment，相当于书的大目录； Segment

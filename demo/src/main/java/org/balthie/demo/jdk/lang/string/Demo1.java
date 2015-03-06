@@ -5,7 +5,6 @@
  */
 package org.balthie.demo.jdk.lang.string;
 
-import org.apache.commons.lang.StringUtils;
 
 /**
  * @author：balthie + 10050
