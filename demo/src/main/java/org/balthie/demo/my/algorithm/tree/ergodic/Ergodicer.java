@@ -1,9 +1,36 @@
 package org.balthie.demo.my.algorithm.tree.ergodic;
 
+import java.util.Deque;
+import java.util.concurrent.LinkedBlockingDeque;
 import org.balthie.demo.my.algorithm.tree.BinaryTreeNode;
 
 public class Ergodicer
 {
+    public void ergodicEachLevel(BinaryTreeNode head)
+    {
+        Deque<BinaryTreeNode> deque = new LinkedBlockingDeque<BinaryTreeNode>();
+        BinaryTreeNode node = null;
+        if(head != null)
+        {
+            deque.push(head);
+            
+            while (deque.size() > 0)
+            {
+                node = deque.pop();
+                System.out.println(node.value);
+                
+                if(node.left != null)
+                {
+                    deque.addLast(node.left);
+                }
+                if(node.right != null)
+                {
+                    deque.addLast(node.right);
+                }
+            }
+        }
+    }
+    
     // 前序遍历
     public void ergodicParentPre(BinaryTreeNode node)
     {
@@ -40,16 +67,18 @@ public class Ergodicer
     
     public static void main(String[] args)
     {
-        BinaryTreeNode head = createTree1();
+        // BinaryTreeNode head = createTree1();
         
-        //BinaryTreeNode head = createTree2();
+        BinaryTreeNode head = createTree2();
         
         Ergodicer e = new Ergodicer();
-        e.ergodicParentMid(head);
+        e.ergodicEachLevel(head);
+        
+        // e.ergodicParentMid(head);
         // e.ergodicParentPre(head);
         
     }
-
+    
     private static BinaryTreeNode createTree1()
     {
         BinaryTreeNode head = new BinaryTreeNode("0");
@@ -72,7 +101,7 @@ public class Ergodicer
         right11.left = left31;
         return head;
     }
-
+    
     private static BinaryTreeNode createTree2()
     {
         BinaryTreeNode head = new BinaryTreeNode("1");
@@ -93,7 +122,7 @@ public class Ergodicer
         right1.right = n022;
         
         BinaryTreeNode n0221 = new BinaryTreeNode("8");
-        n022.left=n0221;
+        n022.left = n0221;
         return head;
     }
 }
