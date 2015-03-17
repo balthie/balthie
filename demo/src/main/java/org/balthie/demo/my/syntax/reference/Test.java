@@ -10,8 +10,7 @@ import java.util.Date;
 /**
  * @author：balthie + 10050
  * @createtime ： 2015年2月10日 上午10:05:06
- * @description TODO 一句话描述
- * @since version 初始于版本 TODO
+ * @description 测试引用传递
  */
 public class Test
 {
@@ -31,7 +30,7 @@ public class Test
         System.out.println("修改方法入参的内容，能影响方法调用者 "+date);
     }
     
-    // 清空方法入参的引用，不能影响方法调用者
+    // 清空方法入参的引用，不影响方法调用者 ： 原因是方法体中，date是一个新的局部变量
     private static void cleanReferenceMethod(Date date)
     {
         date = null;

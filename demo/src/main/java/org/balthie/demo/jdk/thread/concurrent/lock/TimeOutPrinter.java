@@ -16,6 +16,15 @@ import java.util.concurrent.locks.ReentrantLock;
  * @createtime ： 2014年11月28日 下午2:29:15
  * @description  模拟一个单线程的打印机
  * @since version 初始于版本 TODO 
+ * 
+ * http://blog.csdn.net/arkblue/article/details/6138598
+ * 
+ * java concurrent包 ReentrantLock锁的 cas实现
+http://www.cnblogs.com/MichaelPeng/archive/2010/02/12/1667947.html
+
+ * @1 reentrant 锁意味着什么呢？简单来说，它有一个与锁相关的获取计数器，如果拥有锁的某个线程再次得到锁，那么获取计数器就加1，然后锁需要被释放两次才能获得真正释放。
+ * @2 锁机制采用了操作系统 cas原语实现
+ * @3 lock 必须在 finally 块中释放。否则，如果受保护的代码将抛出异常，锁就有可能永远得不到释放！
  */
 public class TimeOutPrinter extends Printer
 {

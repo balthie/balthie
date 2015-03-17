@@ -4,6 +4,11 @@ public class SystemDemo
 {
     public static void main(String[] args)
     { 
+        printSystemProperties();
+    }
+    
+    public static void printSystemProperties()
+    {
         System.out.println("java_vendor:" + System.getProperty("java.vendor"));
         System.out.println("java_vendor_url:" + System.getProperty("java.vendor.url"));
         System.out.println("java_home:" + System.getProperty("java.home"));
