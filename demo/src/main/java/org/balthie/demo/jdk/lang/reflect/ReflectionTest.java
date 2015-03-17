@@ -1,5 +1,6 @@
 package org.balthie.demo.jdk.lang.reflect;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import net.sf.cglib.reflect.FastClass;
 import net.sf.cglib.reflect.FastMethod;
@@ -47,7 +48,26 @@ public class ReflectionTest
     private static final long LOOP = 1 * 10000 * 10000;
     
     // 测试main
-    public static void main(String[] args)
+    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    {
+        //testPerfomance(args);
+        
+        testSetMethod();
+    }
+    
+    public static void testSetMethod() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    {
+        PlatBean bean = new PlatBean();
+        Method[] mArr = PlatBean.class.getDeclaredMethods();
+        Method m = PlatBean.class.getDeclaredMethod("setName", String.class);
+        
+        String[] arr = new String[]{"zbs"};
+        m.invoke(bean, new Object[]{arr});
+        
+        System.out.println(bean.getName());
+    }
+
+    private static void testPerfomance(String[] args)
     {
         if(args.length != 1)
         {
@@ -249,7 +269,6 @@ public class ReflectionTest
             cglibSetCode = cglibBeanClass.getMethod(setCode);
             cglibSetName = cglibBeanClass.getMethod(setName);
         }
-        
     }
     
 }
