@@ -47,12 +47,12 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
     protected Map<String, Collection<T>> allData = new SelfTimeOutMap<String, Collection<T>>();
     
     // 缓存数据管理对象
-    private DefaultHytDataStaticCacheManager cacheManager;
+    private DefaultDataStaticCacheManager cacheManager;
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public RAMStaticDataCache()
     {
-        this.cacheManager = new DefaultHytDataStaticCacheManager(new RAMStaticDataCache.DefaultHytStaticDataCacheTimer());
+        this.cacheManager = new DefaultDataStaticCacheManager(new RAMStaticDataCache.DefaultStaticDataCacheTimer());
     }
     
     /**
@@ -131,17 +131,17 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
         return this.cacheManager.forceRefreshByGroupId(groupId);
     }
     
-    class DefaultHytDataStaticCacheManager
+    class DefaultDataStaticCacheManager
     {
         // 数据是否全量初始化
         private Boolean bInited = false;
         
         // 缓存数据计时器
-        private DefaultHytStaticDataCacheTimer dataTimmer;
+        private DefaultStaticDataCacheTimer dataTimmer;
         
         private Map<String, Collection<T>> tempDataMap;
         
-        public DefaultHytDataStaticCacheManager(DefaultHytStaticDataCacheTimer timer)
+        public DefaultDataStaticCacheManager(DefaultStaticDataCacheTimer timer)
         {
             this.dataTimmer = timer;
         }
@@ -234,7 +234,7 @@ abstract public class RAMStaticDataCache<T> implements IStaticDataCacheQuery<T>
         }
     }
     
-    class DefaultHytStaticDataCacheTimer
+    class DefaultStaticDataCacheTimer
     {
         // 业务数据内存缓存刷新时间
         protected Map<String, Long> dataInitTimeMap = new SelfTimeOutMap<String, Long>();

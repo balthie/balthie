@@ -1,4 +1,5 @@
 package org.balthie.demo.operplat.thread;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
