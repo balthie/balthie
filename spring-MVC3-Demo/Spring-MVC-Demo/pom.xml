@@ -277,14 +277,16 @@
 			</plugin>
 
 			<!-- eclipse中的maven web项目报错：org/codehaus/plexus/archiver/jar/JarArchiver -->
-			<plugin>
+			<!-- java.lang.NoClassDefFoundError: Lorg/apache/maven/archiver/MavenArchiveConfiguration; -->
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1.2</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>

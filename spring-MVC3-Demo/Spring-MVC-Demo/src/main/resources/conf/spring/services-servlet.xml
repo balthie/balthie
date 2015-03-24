@@ -10,8 +10,8 @@
 
 	<!-- <context:component-scan base-package="org.balthie.springmvc" /> -->
 	<!-- <context:annotation-config /> -->
-	<mvc:annotation-driven/>
-	
+	<mvc:annotation-driven />
+
 
 	<!-- @contrallor注解方式映射，支持配置拦截器 , 配置的拦截器继承 extends HandlerInterceptorAdapter -->
 	<!-- 如果不配置，默认使用spring-web.jar 中 DispatcherServlet.properties 配置文件配置的默认Mapping -->
@@ -24,6 +24,7 @@
 
 		<mvc:interceptor>
 			<mvc:mapping path="/services/*"></mvc:mapping>
+			<bean class="org.balthie.springmvc.intercepter.DemoIntercepter" />
 			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
 		</mvc:interceptor>
 	</mvc:interceptors>
