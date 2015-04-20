@@ -16,6 +16,45 @@ public class Demo
 {
     public static void main(String[] args)
     {
+        testIsMatch();
+        //extractSubMatch();
+        extractSubDatePattern();
+    }
+
+    private static void testIsMatch()
+    {
+        System.out.println(Float.valueOf("-0000000000000000000000000000000."
+                + ""));
+        
+        //判断是否 正负整型或浮点型
+        Pattern p3 = Pattern.compile("[+-]?\\d*(.\\d+)?");
+        
+        System.out.println(p3.matcher("+123. 2423").matches());
+        System.out.println(p3.matcher("-123").matches());
+        System.out.println(p3.matcher("123").matches());
+        
+        System.out.println(p3.matcher("-0.").matches());
+        System.out.println(p3.matcher("-120b").matches());
+        System.out.println(p3.matcher("-0.123").matches());
+        System.out.println(p3.matcher("0.123").matches());
+      /*  
+        Matcher m =     p3.matcher("+123  2423.00");
+        System.out.println(m.group());*/
+        
+    }
+
+    private static void extractSubDatePattern()
+    {
+        Pattern p3 = Pattern.compile("(19|20)\\d\\d([- /.])(0[1-9]|1[012])\\2(0[1-9]|[12][0-9]|3[01])");
+        Matcher m3 = p3.matcher("1900-01-01 2007/08/13 1900.01.01 1900 01 01 1900-01.01 1900 13 01 1900 02 31");
+        while (m3.find())
+        {
+            System.out.println(m3.group());
+        }
+    }
+
+    private static void extractSubMatch()
+    {
         Pattern p = Pattern.compile("f(.+?)k");
         Matcher m = p.matcher("fckfkkfkf");
         while (m.find())
@@ -50,11 +89,5 @@ public class Demo
         }
         
         System.out.println("---------");
-        Pattern p3 = Pattern.compile("(19|20)\\d\\d([- /.])(0[1-9]|1[012])\\2(0[1-9]|[12][0-9]|3[01])");
-        Matcher m3 = p3.matcher("1900-01-01 2007/08/13 1900.01.01 1900 01 01 1900-01.01 1900 13 01 1900 02 31");
-        while (m3.find())
-        {
-            System.out.println(m3.group());
-        }
     }
 }

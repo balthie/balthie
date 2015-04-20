@@ -99,6 +99,5 @@ public class Server
             }
         }
         while (this.executor.getCompletedTaskCount() <= resultSize);
-        
     }
 }

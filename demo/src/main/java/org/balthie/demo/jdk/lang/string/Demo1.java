@@ -17,6 +17,11 @@ public class Demo1
     
     public static void main(String[] args)
     {
+        System.out.print(1);
+        System.out.print("\n");
+        System.out.println(String.format("优惠id【%d】：订单金额优惠【%.2f】元", 3123123, 31231312.32212d));
+        
+        System.out.println();
         formatDemo();
     }
     

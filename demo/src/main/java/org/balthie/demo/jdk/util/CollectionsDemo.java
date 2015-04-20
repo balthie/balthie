@@ -29,7 +29,6 @@ public class CollectionsDemo
         Collections.unmodifiableCollection(new ArrayList<String>());
         
         LinkedList<String> list =new LinkedList<String>();
-        
     }
 }
 
