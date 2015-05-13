@@ -28,14 +28,14 @@ public class MyTask
     }
     
     // 每10秒
-    @Scheduled(cron = "0/10 * * * * ?")
+    //@Scheduled(cron = "0/10 * * * * ?")
     public void workPer10Second()
     {
         System.out.println(" @Scheduled workPer10Second task invoke ");
     }
     
     // 每分钟
-    @Scheduled(cron = "0 0/1 * * * ?")
+    //@Scheduled(cron = "0 0/1 * * * ?")
     public void workPerMinute()
     {
         System.out.println(" @Scheduled workPerMinute task invoke ");

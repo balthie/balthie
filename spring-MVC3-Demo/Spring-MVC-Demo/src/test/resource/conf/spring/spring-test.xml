@@ -10,4 +10,5 @@
 
 	<!-- spring托管的注解类 -->
 	<context:component-scan base-package="org.balthie.springmvc" />
+	<import resource="classpath:/conf/spring/spring-async.xml" />
 </beans>
