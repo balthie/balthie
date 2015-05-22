@@ -1,6 +1,6 @@
 -- MySQL dump 10.13
 --
--- Host: localhost    Database: quartz
+-- Host: localhost    Database: ti_optmgr_quartz
 -- ------------------------------------------------------
 -- Server version	5.1.22-rc-community
 
@@ -18,9 +18,9 @@
 --
 -- Table structure for table `QRTZ_BLOB_TRIGGERS`
 --
-drop database IF EXISTS quartz;
-create database quartz;
-use quartz;
+drop database IF EXISTS ti_optmgr_quartz;
+create database ti_optmgr_quartz;
+use ti_optmgr_quartz;
 
 DROP TABLE IF EXISTS `QRTZ_BLOB_TRIGGERS`;
 SET @saved_cs_client     = @@character_set_client;
@@ -92,7 +92,6 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `QRTZ_CRON_TRIGGERS` WRITE;
 /*!40000 ALTER TABLE `QRTZ_CRON_TRIGGERS` DISABLE KEYS */;
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('TestScheduler','Per5MinuteJob_trigger','Per5MinuteJob_group','20 /5 * * * ?','Asia/Shanghai'),('TestScheduler','PerMinuteJob_trigger','PerMinuteJob_group','10 /1 * * * ?','Asia/Shanghai');
 /*!40000 ALTER TABLE `QRTZ_CRON_TRIGGERS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +165,6 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `QRTZ_JOB_DETAILS` WRITE;
 /*!40000 ALTER TABLE `QRTZ_JOB_DETAILS` DISABLE KEYS */;
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('TestScheduler','Per5MinuteJob','Per5MinuteJob_group',NULL,'com.mama100.mp.marketing.common.quartz.cluster.job.Per5MinuteJob','\0','','','\0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap\�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap\�.\�(v\n\�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap��\�`\�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0countsr\0java.lang.Integer⠤���8\0I\0valuexr\0java.lang.Number��\���\�\0\0xp\0\0\0x\0'),('TestScheduler','PerMinuteJob','PerMinuteJob_group',NULL,'com.mama100.mp.marketing.common.quartz.cluster.job.PerMinuteJob','\0','','','\0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap\�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap\�.\�(v\n\�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap��\�`\�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0countsr\0java.lang.Integer⠤���8\0I\0valuexr\0java.lang.Number��\���\�\0\0xp\0\0\0x\0');
 /*!40000 ALTER TABLE `QRTZ_JOB_DETAILS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +188,6 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `QRTZ_LOCKS` WRITE;
 /*!40000 ALTER TABLE `QRTZ_LOCKS` DISABLE KEYS */;
-INSERT INTO `QRTZ_LOCKS` VALUES ('TestScheduler','STATE_ACCESS'),('TestScheduler','TRIGGER_ACCESS');
 /*!40000 ALTER TABLE `QRTZ_LOCKS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +236,6 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `QRTZ_SCHEDULER_STATE` WRITE;
 /*!40000 ALTER TABLE `QRTZ_SCHEDULER_STATE` DISABLE KEYS */;
-INSERT INTO `QRTZ_SCHEDULER_STATE` VALUES ('TestScheduler','DC100501421137483060',1421137963592,7500);
 /*!40000 ALTER TABLE `QRTZ_SCHEDULER_STATE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +350,6 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `QRTZ_TRIGGERS` WRITE;
 /*!40000 ALTER TABLE `QRTZ_TRIGGERS` DISABLE KEYS */;
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('TestScheduler','Per5MinuteJob_trigger','Per5MinuteJob_group','Per5MinuteJob','Per5MinuteJob_group',NULL,1421138120000,1421137820000,5,'WAITING','CRON',1421137543000,0,NULL,0,''),('TestScheduler','PerMinuteJob_trigger','PerMinuteJob_group','PerMinuteJob','PerMinuteJob_group',NULL,1421137990000,1421137930000,5,'WAITING','CRON',1421137483000,0,NULL,0,'');
 /*!40000 ALTER TABLE `QRTZ_TRIGGERS` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
