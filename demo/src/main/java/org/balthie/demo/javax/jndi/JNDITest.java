@@ -9,6 +9,14 @@ public class JNDITest
 {
     public static void main(String[] args) throws NamingException
     {
+        fileSystemJndi();
+    }
+
+    /**
+     * 测试文件系统jndi
+     */
+    public static void fileSystemJndi() throws NamingException
+    {
         Hashtable env = new Hashtable();
         String name = "F:\\fscontext-1_2-beta3.zip";
         // 文件系统服务的提供者
