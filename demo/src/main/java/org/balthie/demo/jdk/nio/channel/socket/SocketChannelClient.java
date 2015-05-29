@@ -30,6 +30,7 @@ public class SocketChannelClient
         channel.configureBlocking(false);
         // 获得一个通道管理器
         this.selector = Selector.open();
+        System.out.println(" Client selector id = " + selector);
         
         // 客户端连接服务器,其实方法执行并没有实现连接，需要在listen（）方法中调
         // 用channel.finishConnect();才能完成连接
@@ -107,7 +108,8 @@ public class SocketChannelClient
     public static void main(String[] args) throws IOException
     {
         SocketChannelClient client = new SocketChannelClient();
-        client.initClient("localhost", 8000);
+        //client.initClient("localhost", 8000);
+        client.initClient("10.50.195.119", 8000);
         client.listen();
     }
 }

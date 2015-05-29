@@ -31,7 +31,9 @@ public class CountDownLatchDemo
         // 设置特定的线程池，大小为5
         ExecutorService exe = Executors.newFixedThreadPool(PLAYER_AMOUNT);
         for(Player p : plays)
+        {
             exe.execute(p); // 分配线程
+        }
         System.out.println("Race begins!");
         begin.countDown();
         try

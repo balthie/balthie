@@ -1,7 +1,4 @@
 /**
- * author��DELL
- * createtime �� 2013-2013-9-12 ����10:51:46
- * TODO һ�仰����
  */
 package org.balthie.demo.jdk.socket.base;
 
@@ -15,27 +12,22 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 /**
- * @author DELL
  * 
  */
 public class SimpleSocketClient
 {
     static String clientName = "balthie";
     
-    // �˿ں�
     public static int portNo = 10000;
     
     public static void main(String[] args) throws IOException
     {
-        // �������ӵ�ַ��,���ӱ���
-        InetAddress addr = InetAddress.getByName("192.168.69.14");
-        // Ҫ��Ӧ�������˵�10000�˿ں�
+        InetAddress addr = InetAddress.getByName("localhost");
         Socket socket = new Socket(addr, portNo);
         try
         {
             System.out.println("socket = " + socket);
             
-            // ����IO���
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -52,4 +44,5 @@ public class SimpleSocketClient
             socket.close();
         }
     }
+
 }
