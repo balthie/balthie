@@ -16,7 +16,7 @@ public class UDPSocketClient
     private DatagramSocket ds = null;
     
     /**
-     * 构造函数，创建UDP客户端
+     * 构造函数，创建UDP客户端 
      * 
      * @throws Exception
      */
