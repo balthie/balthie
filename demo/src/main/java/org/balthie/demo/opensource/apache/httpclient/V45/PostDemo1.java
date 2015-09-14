@@ -1,10 +1,8 @@
 package org.balthie.demo.opensource.apache.httpclient.V45;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -60,7 +58,8 @@ public class PostDemo1
                 if(status >= 200 && status < 300)
                 {
                     HttpEntity resEntity = response.getEntity();
-                    if (resEntity != null) {  
+                    System.out.println("Response content: " + EntityUtils.toString(resEntity, "UTF-8")); 
+                  /*  if (resEntity != null) {  
                         System.out.println("Response content length: " + resEntity.getContentLength());  
                         
                         reader = new BufferedReader(new InputStreamReader(resEntity.getContent(), "utf-8"));
@@ -70,8 +69,7 @@ public class PostDemo1
                             System.out.println(line);
                             line = reader.readLine();
                         }
-                        
-                    }  
+                    }  */
                     EntityUtils.consume(response.getEntity());
                 }
                 else
