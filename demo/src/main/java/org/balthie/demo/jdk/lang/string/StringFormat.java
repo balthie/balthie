@@ -1,6 +1,7 @@
 package org.balthie.demo.jdk.lang.string;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 /**
  * 1.%[argument_index$][flags][width][.precision]conversion
@@ -125,6 +126,8 @@ public class StringFormat
         System.out.println(String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS", c));
         System.out.println(String.format("%1$ty-%1$tm-%1$td %1$tI:%1$tM:%1$tS %1$tp %1$tb %1$ta", c));
         System.out.println(String.format("%1$tF %1$tT", 1244943575031l));
+        
+        System.out.println(String.format("%1$tF %1$tT", new Timestamp(System.currentTimeMillis())));
     }
     
     /**

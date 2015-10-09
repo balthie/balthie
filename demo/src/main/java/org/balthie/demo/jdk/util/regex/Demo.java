@@ -16,6 +16,13 @@ public class Demo
 {
     public static void main(String[] args)
     {
+        
+        // 测试组模式匹配
+        //groupTest();
+    }
+
+    private static void groupTest()
+    {
         Pattern p = Pattern.compile("f(.+?)k");
         Matcher m = p.matcher("fckfkkfkf");
         while (m.find())

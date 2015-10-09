@@ -21,6 +21,6 @@ public class Demo1
         System.out.println(Byte.MIN_VALUE);
         
         int i = 0x01234567;
-        System.out.println(i);
+        System.out.println(Integer.MAX_VALUE);
     }
 }
