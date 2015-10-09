@@ -28,8 +28,11 @@ public class CollectionsDemo
         //UnmodifiableCollection
         Collections.unmodifiableCollection(new ArrayList<String>());
         
-        LinkedList<String> list =new LinkedList<String>();
-        
+        LinkedList<Long> list =new LinkedList<Long>();
+        list.add(1L);
+        list.add(2L);
+        list.add(3L);
+        System.out.println(list.toString());
     }
 }
 

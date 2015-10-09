@@ -2,6 +2,7 @@ package org.balthie.demo.my.ios.message;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
+/*
 import javapns.devices.Device;
 import javapns.devices.implementations.basic.BasicDevice;
 import javapns.notification.AppleNotificationServerBasicImpl;
@@ -65,4 +66,4 @@ public class ApnsSend
             e.printStackTrace();
         }
     }
-}
+}*/

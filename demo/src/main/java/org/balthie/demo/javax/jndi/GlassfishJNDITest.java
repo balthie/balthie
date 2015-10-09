@@ -35,7 +35,7 @@ public class GlassfishJNDITest
          * glassfish domain.xml: <system-property name="IIOP_LISTENER_PORT"
          * value="23700"></system-property>
          */
-        env.put(Context.PROVIDER_URL, "localhost:23700");
+        env.put(Context.PROVIDER_URL, "192.168.234.127:23700");
         DirContext ctx = new InitialDirContext(env);
         
         // 分别获取包含所有属性和只包含Mx属性的Attributes对象
@@ -67,7 +67,8 @@ public class GlassfishJNDITest
         
         System.out.println(ic);
         
-        Properties p = (Properties) ((Context) ic.lookup("proxool/config")).lookup("cmpn");
+        //Properties p = (Properties) ((Context) ic.lookup("proxool/config")).lookup("cmpn");
+        Properties p = (Properties) (Context) ic.lookup("proxool/register");
         
         System.out.println(p);
         

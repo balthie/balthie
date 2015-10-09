@@ -1,0 +1,6 @@
+<root>
+      <parent pname="p1">
+            <child cname="c1">child1</child>
+            <child cname="c2">child2</child>
+      </parent>
+</root>
