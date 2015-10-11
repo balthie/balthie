@@ -95,7 +95,7 @@ public class GetDemo1
         d1.param = "sid=13824&nid=0&cellid=291&ishex=0";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try
-        {
+        { 
             HttpGet httpget = new HttpGet(d1.getURI());
             httpget.addHeader("apix-key", "0bb621efe5144ef06b762f7015623e45");
             System.out.println("Executing request " + httpget.getRequestLine());

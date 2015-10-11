@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author：balthie + 10050
  * @createtime ： 2014年12月2日 下午5:21:12
- * @description TODO 一句话描述
+ * @description 延时激活 队列，当达到元素的激活时间以后，poll方法才能取得Delayed元素
+ * DelayQueue Delayed
  * @since version 初始于版本 TODO
  */
 public class BootStrap
@@ -31,6 +32,7 @@ public class BootStrap
         for(int i = 0; i < threads.length; i++)
         {
             threads[i].start();
+            //是用来指定当前 ？？主线程？？ 等待其他线程执行完毕后，再来继续执行Thread.join()后面的代码
             threads[i].join();
         }
         

@@ -12,7 +12,7 @@ import java.util.concurrent.DelayQueue;
 /**
  * @author：balthie + 10050
  * @createtime ： 2014年12月2日 下午4:26:03
- * @description TODO 一句话描述
+ * @description 像queue中添加100条随机失效时间的数据
  * @since version 初始于版本 TODO
  */
 public class Task implements Runnable
