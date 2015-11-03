@@ -33,6 +33,7 @@ public class BootStrap
         {
             threads[i].start();
             //是用来指定当前 ？？主线程？？ 等待其他线程执行完毕后，再来继续执行Thread.join()后面的代码
+            // 等待过程中，每个线程都在执行
             threads[i].join();
         }
         
