@@ -180,39 +180,6 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		<!-- org.apache.commons.net -->
-		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>2.2</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		<!-- org.apache.commons.net -->
-		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>2.2</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		<!-- org.apache.commons.net -->
-		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>2.2</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		<!-- org.apache.commons.net -->
-		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>2.2</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		
 		<!-- apache poi begin -->
 		<!-- for excel  poi hssf -->
 		<dependency>
@@ -227,6 +194,7 @@
 		    <version>3.13</version>
 		</dependency>
 		<!-- apache poi end -->
+
 	</dependencies>
 	
 	<build>
