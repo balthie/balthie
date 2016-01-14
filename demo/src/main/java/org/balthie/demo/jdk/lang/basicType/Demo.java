@@ -8,7 +8,8 @@ public class Demo
         int count = 1999;
         
         System.out.println(unitPrice * count);
-        // 结果 990000.94 ，小数部分溢出
         System.out.println(Math.round(unitPrice * count * 100)/100d);
+        
+        System.out.println(100.01D - 100.02D);
     }
 }
