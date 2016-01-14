@@ -8,6 +8,7 @@ package org.balthie.demo.my.json.jackson2.map;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import org.balthie.demo.my.json.jackson2.Data;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,7 +28,8 @@ public class MapJsonDemo1
     public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException
     {
         MapJsonDemo1 d = new MapJsonDemo1();
-        System.out.println(" stringMap2Json()  = " + d.stringMap2Json());
+       // System.out.println(" stringMap2Json()  = " + d.stringMap2Json());
+        d.testData();
     }
     
     /**
@@ -41,8 +43,8 @@ public class MapJsonDemo1
     public String stringMap2Json() throws JsonProcessingException
     {
         HashMap<String, String> stringMap = new HashMap<String, String>();
-        stringMap.put("mapkey01", "mapvalue01");
-        stringMap.put("mapkey02", "mapvalue02");
+        stringMap.put("key01", "value01");
+        stringMap.put("key02", "value02");
         return mapper.writeValueAsString(stringMap);
     }
     
@@ -52,7 +54,7 @@ public class MapJsonDemo1
         
         // 仅输出一行json字符串, 调用后 system.out.println方法都不能打印信息到控制台（应该是调用了write方法后，jackson自动关闭了
         // System.out输出流）
-        mapper.writeValue(System.out, user1);
+        //mapper.writeValue(System.out, user1);
         
         // 获取json字符串
         String jsonStr = mapper.writeValueAsString(user1);
@@ -60,5 +62,30 @@ public class MapJsonDemo1
         
         // 将字符串美化成多行
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
+        
+        
+        CommonMapData d = new CommonMapData();
+        Map<String, String> hashMap = new HashMap<>(5);
+        hashMap.put("k1", "v1");
+        hashMap.put("k2", "v2");
+        hashMap.put("k3", "v3");
+        mapper.writeValue(System.out, hashMap);
+        d.setStringMap(hashMap);
+        mapper.writeValue(System.out, d);
+    }
+    
+    public class CommonMapData
+    {
+        Map<String, String> stringMap ;
+
+        public Map<String, String> getStringMap()
+        {
+            return stringMap;
+        }
+
+        public void setStringMap(Map<String, String> stringMap)
+        {
+            this.stringMap = stringMap;
+        }
     }
 }

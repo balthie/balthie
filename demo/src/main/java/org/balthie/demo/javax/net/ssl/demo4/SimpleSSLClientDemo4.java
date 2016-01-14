@@ -1,4 +1,4 @@
-package org.balthie.demo.jdk.socket.ssl.demo3;
+package org.balthie.demo.javax.net.ssl.demo4;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,17 +18,17 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
-public class SimpleSSLClientDemo3
+public class SimpleSSLClientDemo4
 {
-    private static String kpath = "D:/JSSE/keydemo/clientKeys";
+    //private static String kpath = "D:/jdk1.6.0_31/jre/lib/security/demo4.jreKeys.keystore";
+    private static String kpath = "D:/jdk1.6.0_31/jre/lib/security/demo5.client.keystore";
     
-    private static String tpath = "D:/JSSE/keydemo/clientTrust";
+    private static String tpath = "D:/jdk1.6.0_31/jre/lib/security/cacerts";
     
-    private static char[] password = "123456".toCharArray();
+    private static char[] password = "changeit".toCharArray();
     
-    static String clientName = "Mike";
+    static String clientName = "balthie";
     
-    // �˿ں�
     public static int portNo = 10000;
     
     /**
@@ -37,7 +37,7 @@ public class SimpleSSLClientDemo3
      */
     public static void main(String[] args) throws UnknownHostException
     {
-        InetAddress addr = InetAddress.getByName("192.168.69.14");
+        InetAddress addr = InetAddress.getByName("192.168.67.43");
         
         SSLContext context = null;
         try
@@ -59,7 +59,7 @@ public class SimpleSSLClientDemo3
         }
         catch (Exception e)
         {
-            e.printStackTrace(); // �����쳣
+            e.printStackTrace(); 
         }
         SSLSocketFactory ssf = context.getSocketFactory();
         SSLSocket sslSocket = null;
@@ -71,7 +71,6 @@ public class SimpleSSLClientDemo3
             
             sslSocket.startHandshake();
             
-            // ����IO���
             BufferedReader in = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
             
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sslSocket.getOutputStream())), true);

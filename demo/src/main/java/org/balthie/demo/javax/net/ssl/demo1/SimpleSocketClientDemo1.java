@@ -3,7 +3,7 @@
  * createtime �� 2013-2013-9-12 ����10:51:46
  * TODO һ�仰����
  */
-package org.balthie.demo.jdk.socket.ssl.demo1;
+package org.balthie.demo.javax.net.ssl.demo1;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,20 +22,16 @@ public class SimpleSocketClientDemo1
 {
     static String clientName = "Mike";
     
-    // �˿ں�
     public static int portNo = 10000;
     
     public static void main(String[] args) throws IOException
     {
-        // �������ӵ�ַ��,���ӱ���
         InetAddress addr = InetAddress.getByName("192.168.69.14");
-        // Ҫ��Ӧ�������˵�10000�˿ں�
         Socket socket = new Socket(addr, portNo);
         try
         {
             System.out.println("socket = " + socket);
             
-            // ����IO���
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);

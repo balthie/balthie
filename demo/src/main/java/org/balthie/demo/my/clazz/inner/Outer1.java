@@ -12,24 +12,37 @@ package org.balthie.demo.my.clazz.inner;
  */
 public class Outer1
 {
-    public Outer1()
+    public int outId;
+    
+    public Outer1(int id)
     {
+        this.outId = id;
         System.out.println("Outer1 created");
     }
     
-    class InnerClass
+    public InnerClass innerInstance()
+    {
+        return new InnerClass();
+    }
+    
+    public class InnerClass
     {
         public InnerClass()
         {
             System.out.println("InnerClass created");
         }
+        
+        public int getOutClassId()
+        {
+            return Outer1.this.outId;
+        }
     }
     
     static class InnerStaticClass
     {
-        static Outer1 instance = new Outer1();
+        static Outer1 instance = new Outer1(1);
         
-        // 避免静态类的实例化
+        // 私有构造方法，防止实例化
         private InnerStaticClass()
         {
             System.out.println("InnerStaticClass created");
@@ -43,7 +56,6 @@ public class Outer1
         System.out.println(InnerStaticClass.instance);
         
         InnerStaticClass s = new InnerStaticClass();
-        
         
     }
 }

@@ -3,7 +3,7 @@
  * createtime �� 2013-2013-9-9 ����9:55:37
  * TODO һ�仰����
  */
-package org.balthie.demo.jdk.socket.ssl.demo1;
+package org.balthie.demo.javax.net.ssl.demo1;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,4 +1,4 @@
-package org.balthie.demo.jdk.socket.ssl.demo3;
+package org.balthie.demo.javax.net.ssl.demo3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

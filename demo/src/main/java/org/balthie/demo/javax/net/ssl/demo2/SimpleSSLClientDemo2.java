@@ -3,7 +3,7 @@
  * createtime �� 2013-2013-9-9 ����2:49:24
  * TODO һ�仰����
  */
-package org.balthie.demo.jdk.socket.ssl.demo2;
+package org.balthie.demo.javax.net.ssl.demo2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,9 +22,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
-/**
- * ������������֤
- */
 public class SimpleSSLClientDemo2
 {
     private static String kpath = "D:/Workspaces/Balthie/bin/clientKeysNotExists";
@@ -33,7 +30,6 @@ public class SimpleSSLClientDemo2
     
     private static char[] password = "123456".toCharArray();
     
-    // �˿ں�
     public static int portNo = 10000;
     
     /**
@@ -42,54 +38,55 @@ public class SimpleSSLClientDemo2
      */
     public static void main(String[] args) throws UnknownHostException
     {
-        InetAddress addr = InetAddress.getByName("192.168.69.14");
+        InetAddress addr = InetAddress.getByName("smtp.exmail.qq.com");
         
         SSLContext context = null;
         try
         {
-            /*KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            /*
+             * KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+             * 
+             * keyStore.load(new FileInputStream(kpath), password);
+             * KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+             * kmf.init(keyStore, password);
+             * KeyManager[] km = kmf.getKeyManagers();
+             */
             
-            keyStore.load(new FileInputStream(kpath), password);
-            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-            kmf.init(keyStore, password);
-            KeyManager[] km = kmf.getKeyManagers();*/
-            
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            trustStore.load(new FileInputStream(tpath), password);
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
-            tmf.init(trustStore);
-            TrustManager[] tm = tmf.getTrustManagers();
-            context = SSLContext.getInstance("SSL");
-            context.init(null, tm, null);
+            // KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            // trustStore.load(new FileInputStream(tpath), password);
+            // TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+            // tmf.init(trustStore);
+            // TrustManager[] tm = tmf.getTrustManagers();
+            // context = SSLContext.getInstance("SSL");
+            // context.init(null, tm, null);
         }
         catch (Exception e)
         {
-            e.printStackTrace(); // �����쳣
+            e.printStackTrace();
         }
         
-        // �������ӵ�ַ��,���ӱ���
         SocketFactory ssf = SSLSocketFactory.getDefault();
         SSLSocket sslSocket = null;
         try
         {
-            sslSocket = (SSLSocket) ssf.createSocket(addr, 10000);
+            sslSocket = (SSLSocket) ssf.createSocket(addr, 465);
             System.out.println("socket = " + sslSocket);
             
             sslSocket.startHandshake();
             
-            // ����IO���
             BufferedReader in = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
             
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sslSocket.getOutputStream())), true);
             out.println("Hello Server, I am  balthie ");
             
             String str = in.readLine();
-            System.out.println(str);
+            System.out.println("out " + str);
             
             out.println("byebye");
         }
         catch (Exception e)
         {
+            System.out.println("error: " + e);
             try
             {
                 sslSocket.close();

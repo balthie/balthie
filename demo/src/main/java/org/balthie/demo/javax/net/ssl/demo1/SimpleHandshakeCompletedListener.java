@@ -1,4 +1,4 @@
-package org.balthie.demo.jdk.socket.ssl.demo1;
+package org.balthie.demo.javax.net.ssl.demo1;
 
 import javax.net.ssl.HandshakeCompletedEvent;
 import javax.net.ssl.HandshakeCompletedListener;

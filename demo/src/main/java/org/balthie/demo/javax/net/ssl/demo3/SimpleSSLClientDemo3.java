@@ -1,4 +1,4 @@
-package org.balthie.demo.jdk.socket.ssl.demo4;
+package org.balthie.demo.javax.net.ssl.demo3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,16 +18,15 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
-public class SimpleSSLClientDemo4
+public class SimpleSSLClientDemo3
 {
-    //private static String kpath = "D:/jdk1.6.0_31/jre/lib/security/demo4.jreKeys.keystore";
-    private static String kpath = "D:/jdk1.6.0_31/jre/lib/security/demo5.client.keystore";
+    private static String kpath = "D:/JSSE/keydemo/clientKeys";
     
-    private static String tpath = "D:/jdk1.6.0_31/jre/lib/security/cacerts";
+    private static String tpath = "D:/JSSE/keydemo/clientTrust";
     
-    private static char[] password = "changeit".toCharArray();
+    private static char[] password = "123456".toCharArray();
     
-    static String clientName = "balthie";
+    static String clientName = "Mike";
     
     // �˿ں�
     public static int portNo = 10000;
@@ -38,7 +37,7 @@ public class SimpleSSLClientDemo4
      */
     public static void main(String[] args) throws UnknownHostException
     {
-        InetAddress addr = InetAddress.getByName("192.168.67.43");
+        InetAddress addr = InetAddress.getByName("192.168.69.14");
         
         SSLContext context = null;
         try

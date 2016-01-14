@@ -15,9 +15,11 @@ public class StringFormat
     
     public static void main(String[] args)
     {
-        formatAny();
+        // formatAny();
         formatDate();
-        formatNumber();
+        // formatNumber();
+        
+        // doubleFormat();
     }
     
     /**
@@ -57,13 +59,33 @@ public class StringFormat
         System.out.println(String.format("%d", -31)); // 格式化成数值表示使用十进制，结果"-31"
         System.out.println(String.format("%1$d", -31)); // 格式化成数值表示使用十进制，结果"-31"
         System.out.println(String.format("%1$o", -31)); // 格式化成数值表示使用八进制，结果"37777777741"
-        System.out.println(String.format("%1$19d", -31));// 格式化成数值表示使用十进制，总长度显示19位结果"                -31"
-        System.out.println(String.format("%1$-19d", -31));// 格式化成数值表示使用十进制，总长度显示19位,左靠齐结果"-31                "
+        System.out.println(String.format("%1$19d", -31));// 格式化成数值表示使用十进制，总长度显示19位结果" -31"
+        System.out.println(String.format("%1$-19d", -31));// 格式化成数值表示使用十进制，总长度显示19位,左靠齐结果"-31 "
         System.out.println(String.format("%1$09d", -31));// 格式化成数值表示,使用十进制，结果"-00000031"
-        System.out.println(String.format("%1$,9d", -3123));// 每3位数字用,隔开,总长度9位，结果"   -3,123"
+        System.out.println(String.format("%1$,9d", -3123));// 每3位数字用,隔开,总长度9位，结果" -3,123"
         System.out.println(String.format("%1$,09d", -3123));// 每3位数字用,隔开,用0填充总长度9位，结果"-0003,123"
-        System.out.println(String.format("%1$(9d", -3123));// 每3位数字用,用0填充总长度9位，结果"     (3123)"
+        System.out.println(String.format("%1$(9d", -3123));// 每3位数字用,用0填充总长度9位，结果" (3123)"
         System.out.println(String.format("%1$ 9d", -31));
+    }
+    
+    public static void doubleFormat()
+    {
+        
+        double d = Double.parseDouble("9909999999.9999");
+        System.out.println(d);
+        // 格式化为浮点型字符串
+        System.out.println(String.format("%f", d));
+        // 整数部分全部显示，小数部分后面保留5位小数
+        System.out.println(String.format("%.5f", d));
+        // 使用,对数字分组
+        System.out.println(String.format("%,f", d));
+        // 显示正负数
+        System.out.println(String.format("%+f", d));
+        System.out.println(String.format("%+f", -345.98));
+        // 算小数点后面的位数一起时15
+        System.out.println(String.format("%015f", 345.98));
+        // 小数点后面保留三位小数
+        System.out.println(String.format("%015.3f", 345.98));
     }
     
     /**
