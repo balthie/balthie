@@ -99,6 +99,12 @@ public class SSLDemo
         props.setProperty("mail.smtp.host", "smtp.126.com");
         props.setProperty("mail.smtp.port", "465");
         
+        // 发件人
+        String from = "xiangwei@viomi.net";
+        
+        // 收件人
+        String to = "xiangwei@viomi.net";
+        
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
         props.put("mail.smtp.ssl.socketFactory", sf);
@@ -134,7 +140,8 @@ public class SSLDemo
     {
         // 腾讯企业邮箱 SSL 握手失败： http://blog.csdn.net/tzs_1041218129/article/details/52195922
         // 这个问题是jdk导致的，jdk1.8里面有一个jce的包，安全性机制导致的访问https会报错，官网上有替代的jar包，如果替换掉就可以了。问题的解决方法还可以就是在整个项目中把你的jdk换成是1.7去，同样也可以解决这个我问题。
-        
+        // http://stackoverflow.com/questions/6353849/received-fatal-alert-handshake-failure-through-sslhandshakeexception
+        // JCE是java加密扩展包，由于美国出口限制规定，JCE对部分国家是限制出口的，致使其加密长度有所缩减，例如，DES算法因受到军事出口限制，目前仅提供56位的密钥长度，而实际安全要求至少要128位。对于出口限制，SUN公司通过权限文件做了相应限制（local_policy.jar和US_export_policy.jar），而UnlimitedJCEPolicyJDK7就是用来减少相关限制的相关文件。
         props.setProperty("mail.smtp.host", "smtp.exmail.qq.com");
         props.setProperty("mail.smtp.port", "465");
         
