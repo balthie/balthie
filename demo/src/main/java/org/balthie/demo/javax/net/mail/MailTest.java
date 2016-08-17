@@ -2,6 +2,7 @@ package org.balthie.demo.javax.net.mail;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Security;
+import java.util.Enumeration;
 import java.util.Properties;
 import javax.mail.FetchProfile;
 import javax.mail.Folder;
@@ -13,7 +14,7 @@ import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeUtility;
 
-public class MailTest
+public class MailTest 
 {
     
     public static void main(String[] args) throws MessagingException, UnsupportedEncodingException

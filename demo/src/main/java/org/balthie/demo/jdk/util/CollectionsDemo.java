@@ -7,6 +7,7 @@ package org.balthie.demo.jdk.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -33,6 +34,11 @@ public class CollectionsDemo
         list.add(2L);
         list.add(3L);
         System.out.println(list.toString());
+        
+        for(Iterator<Long> iter = list.listIterator(); iter.hasNext();)
+        {
+            System.out.println(iter.next());
+        }
     }
 }
 

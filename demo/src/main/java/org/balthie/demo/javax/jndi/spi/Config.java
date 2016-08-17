@@ -1,5 +1,6 @@
 package org.balthie.demo.javax.jndi.spi;
 
+import javax.crypto.KeyGenerator;
 import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.Referenceable;

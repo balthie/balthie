@@ -36,7 +36,6 @@ private static String kpath = "D:/Workspaces/Balthie/bin/serverKeys";
         SSLContext context = null;
         try
         {
-            // �����Կ��
             KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
             ks.load(new FileInputStream(kpath), password);
             KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");

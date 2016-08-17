@@ -196,7 +196,7 @@ public class ImageUtil
     
     public static void main(String[] args) throws Exception
     {
-        String origiFilePath = "d:\\test.jpg";
+        String origiFilePath = "d:\\webwxgetmsgimg.jpg";
         System.out.println(" ------------ begin ------------  ");
         
         File srcfile = new File(origiFilePath);
@@ -213,7 +213,7 @@ public class ImageUtil
         BufferedImage img = zoomImage(srcfile, 0.2f);
         writeImage(img, "jpg", "d:\\upload\\narrow1.jpg");*/
         
-        generateZoomImageFile(srcfile, 0.2f, "d:\\upload\\narrow2.jpg");
+        generateZoomImageFile(srcfile, 0.333f, "d:\\webwxgetmsgimg_60.jpg");
         
         
         System.out.println(" ----------  end  ------------  ");

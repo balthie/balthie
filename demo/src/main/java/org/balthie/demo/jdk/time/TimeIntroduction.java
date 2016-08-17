@@ -18,13 +18,13 @@ public class TimeIntroduction
 {
     public static void main(String[] args) throws InterruptedException
     {
-        testClock();
-        testInstant();
-        testLocalDateTime();
-        testZonedDateTime();
+//        testClock();
+//        testInstant();
+//        testLocalDateTime();
+//        testZonedDateTime();
         testDuration();
-        testChronology();
-        testNewOldDateConversion();
+//        testChronology();
+//        testNewOldDateConversion();
     }
     
     public static void testClock() throws InterruptedException
@@ -66,7 +66,7 @@ public class TimeIntroduction
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now);
         // 自定义时区
-        LocalDateTime now2 = LocalDateTime.now(ZoneId.of("Europe/Paris"));
+        LocalDateTime now2 = LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
         System.out.println(now2);// 会以相应的时区显示日期
         // 自定义时钟
         Clock clock = Clock.system(ZoneId.of("Asia/Dhaka"));

@@ -47,12 +47,13 @@ public class ListJsonDemo1
         System.out.println(" -------------  get from str data List -------------" + dataList);
     }
     
-    public String stringListToJson() throws JsonProcessingException
+    public static String stringListToJson() throws JsonProcessingException
     {
         ArrayList<String> lists = new ArrayList<String>();
         lists.add("testlist01");
         lists.add("testlist02");
-        return mapper.writeValueAsString(lists);
+//        return mapper.writeValueAsString(lists);
+        return null;
     }
     
     public List<String> jsonToStringList(String jsonStr) throws JsonParseException, JsonMappingException, IOException

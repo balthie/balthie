@@ -25,7 +25,8 @@ public class StreamDemo1
     public static void main(String[] args)
     {
         Long now = System.currentTimeMillis();
-        List<Date> list = LongStream.range(0L, 1000L).mapToObj(l -> new Date(l + now)).collect(Collectors.toList());
+        long range = 1000L;
+        List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l + now)).collect(Collectors.toList());
         System.out.println(list.size());
         
         new StreamDemo1().filter(list);
@@ -39,6 +40,7 @@ public class StreamDemo1
         new StreamDemo1().reduce();
         
         new StreamDemo1().summaryStatistics();
+        
     }
     
     // 计算List中的元素的最大值，最小值，总和及平均值
@@ -152,6 +154,11 @@ public class StreamDemo1
         list.forEach(d -> System.out.println(d));
         
         list.forEach(System.out::println);
+        
+        
+        List<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+        Integer t = (Integer) primes.stream().filter(i -> i == 13).findFirst().orElse(null);
+        System.out.println(t);
     }
     
 }

@@ -64,7 +64,8 @@ public class SimpleSSLClientDemo2
         {
             e.printStackTrace();
         }
-        
+        System.setProperty("https.protocols", "TLSv1");
+        System.out.println(System.getProperty("https.protocols"));
         SocketFactory ssf = SSLSocketFactory.getDefault();
         SSLSocket sslSocket = null;
         try
@@ -86,7 +87,7 @@ public class SimpleSSLClientDemo2
         }
         catch (Exception e)
         {
-            System.out.println("error: " + e);
+            e.printStackTrace();
             try
             {
                 sslSocket.close();
