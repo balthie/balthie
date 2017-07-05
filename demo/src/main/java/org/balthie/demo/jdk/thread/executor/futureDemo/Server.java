@@ -59,8 +59,7 @@ public class Server
         do
         {
             resultSize = this.resultList.size();
-            System.out.println(MessageFormat.format(" total Task count 【{0}】", resultSize));
-            System.out.println(MessageFormat.format(" completed Task count 【{0}】", this.executor.getCompletedTaskCount()));
+            System.out.println(MessageFormat.format(" total Task count 【{0}】completed Task count 【{1}】", resultSize, this.executor.getCompletedTaskCount()));
             if(this.executor.getCompletedTaskCount() == 20)
             {
                 System.out.println(MessageFormat.format(" all Task done at 【{0,time, HH:mm:ss:ms}】", new Date()));
