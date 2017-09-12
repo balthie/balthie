@@ -15,5 +15,9 @@ public class MainTest
         uo = new OrderFDInfoDecorater(uo);
         System.out.println(uo.toString());
         
+        
+        boolean flag = false;
+        
+        if(flag = (1==1)) System.out.println(flag);
     }
 }
