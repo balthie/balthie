@@ -1,4 +1,4 @@
-package org.balthie.demo.jvm.keyword;
+package org.balthie.demo.jvm.keyword.volatiletest;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
@@ -13,14 +13,22 @@ import java.util.concurrent.locks.ReentrantLock;
 // 3.1 当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果已经对后面的操作可见；在其后面的操作肯定还没有进行；
 // 3.2 在进行指令优化时，不能将在对volatile变量访问的语句放在其后面执行，也不能把volatile变量后面的语句放到其前面执行。
 
+//例如： 
+//volatile int i=10; 
+//int j = i; 
+//... 
+//int k = i; 
+//volatile 告诉编译器i是随时可能发生变化的，每次使用它的时候必须从i的地址中读取，因而编译器生成的可执行码会重新从i的地址读取数据放在k中。 
+//如果不加valotile，优化做法是，由于编译器发现两次从i读数据的代码之间的代码没有对i进行过操作，它会自动把上次读的数据放在k中。而不是重新从i里面读。这样以来，如果i是一个寄存器变量或者表示一个端口数据就容易出错，所以说volatile可以保证对特殊地址的稳定访问，不会出错。
+
 // 底层原理
 /*
  * 下面这段话摘自《深入理解Java虚拟机》：
- * “观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令”
+ * 观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令, 总线锁就是使用处理器提供的一个LOCK＃信号，当一个处理器在总线上输出此信号时，其他处理器的请求将被阻塞住,那么该处理器可以独占使用共享内存。
  * lock前缀指令实际上相当于一个内存屏障（也成内存栅栏），内存屏障会提供3个功能：
  * 1）它确保指令重排序时不会把其后面的指令排到内存屏障之前的位置，也不会把前面的指令排到内存屏障的后面；即在执行到内存屏障这句指令时，在它前面的操作已经全部完成；
  * 2）它会强制将对缓存的修改操作立即写入主存；
- * 3）如果是写操作，它会导致其他CPU中对应的缓存行无效。
+ * 3）如果是写操作，它会导致其他CPU中对应的缓存行无效（强制线程从内存而不是cpu缓存获取变量）。
  */
 public class VolatileDemo
 {
