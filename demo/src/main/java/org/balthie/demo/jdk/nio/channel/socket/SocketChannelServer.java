@@ -26,16 +26,17 @@ public class SocketChannelServer
         // 获得一个ServerSocket通道
         // ServerSocketChannel可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。
         ServerSocketChannel serverChannel = ServerSocketChannel.open();
+        System.out.println("serverChannel " + serverChannel);
         // 设置通道为非阻塞
         serverChannel.configureBlocking(false);
         // 将该通道对应的ServerSocket绑定到port端口
         serverChannel.socket().bind(new InetSocketAddress(port));
-        // 获得一个通道管理器
+        // 获得一个事件多路管理器
         this.selector = Selector.open();
         System.out.println("server selector id " + selector);
         
-        // 将通道管理器和该通道绑定，并为该通道注册SelectionKey.OP_ACCEPT事件,注册该事件后，
-        // 当该事件到达时，selector.select()会返回，如果该事件没到达selector.select()会一直阻塞。
+        // 将事件多路管理器和该通道绑定，并为该通道注册SelectionKey.OP_ACCEPT事件,注册该事件后，
+        // 当客户端请求事件到达时，selector.select()会返回，如果该事件没到达selector.select()会一直阻塞。
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
     }
     
@@ -62,7 +63,8 @@ public class SocketChannelServer
                 // 删除已选的key,以防重复处理
                 ite.remove();
                 
-                // 客户端请求连接事件
+                System.out.println("SelectionKey " + key);
+                // 客户端请求事件
                 if(key.isAcceptable())
                 {
                     ServerSocketChannel server = (ServerSocketChannel) key.channel();
@@ -73,18 +75,16 @@ public class SocketChannelServer
                     
                     // 异步写消息到buffer中，buffer中的数据由 （???）在 (???)时通过socket发送
                     channel.write(ByteBuffer.wrap(new String("向客户端发送了一条信息").getBytes()));
-                    // 在和客户端连接成功之后，为了可以接收到客户端的信息，需要给通道设置读的权限。
+                    // 向客户端的socket channel注册可读事件，让客户端触发读取数据操作
                     channel.register(this.selector, SelectionKey.OP_READ);
-                    
+                    System.out.println("server.accept() SocketChannel " + channel);
                     // 获得了可读的事件
                 }
                 else if(key.isReadable())
                 {
                     read(key);
                 }
-                
             }
-            
         }
     }
     
@@ -109,7 +109,7 @@ public class SocketChannelServer
          * ByteBuffer outBuffer = ByteBuffer.wrap("服务端收到了你的信息".getBytes());
          * channel.write(outBuffer);// 将消息回送给客户端
          */}
-    
+        
     /**
      * 启动服务端测试
      * 

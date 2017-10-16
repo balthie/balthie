@@ -25,22 +25,38 @@ public class StreamDemo1
     public static void main(String[] args)
     {
         Long now = System.currentTimeMillis();
-        long range = 1000L;
-        List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l + now)).collect(Collectors.toList());
+        long range = 1000;
+        List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 1000 + now)).collect(Collectors.toList());
         System.out.println(list.size());
+        new StreamDemo1().sortedDemo(now);
         
-        new StreamDemo1().filter(list);
+//        new StreamDemo1().filter(list);
+//        
+//        new StreamDemo1().map(list);
+//        
+//        new StreamDemo1().count(list);
+//        
+//        new StreamDemo1().collect(list);
+//        
+//        new StreamDemo1().reduce();
+//        
+//        new StreamDemo1().summaryStatistics();
+    
+    }
+    
+    private void sortedDemo(Long now)
+    {
+        long range = 10;
+        List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 100000000 + now)).collect(Collectors.toList());
         
-        new StreamDemo1().map(list);
+        System.out.println("排序前");
+        list.stream().forEach(System.out::println);
         
-        new StreamDemo1().count(list);
-        
-        new StreamDemo1().collect(list);
-        
-        new StreamDemo1().reduce();
-        
-        new StreamDemo1().summaryStatistics();
-        
+        Stream<Date> sortedStream = list.stream().sorted((d1, d2) -> (int) (d2.getTime() - d1.getTime()));
+        System.out.println("排序后的新流对象");
+        sortedStream.forEach(System.out::println);
+        System.out.println("排序后的原list");
+        list.stream().forEach(System.out::println);
     }
     
     // 计算List中的元素的最大值，最小值，总和及平均值
@@ -87,10 +103,10 @@ public class StreamDemo1
         
         Map<Integer, List<Date>> r3 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
                 .collect(Collectors.groupingBy(Date::getDay));
-        
+                
         r3 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
-                .collect(Collectors.groupingBy(d->d.getDay()));
-        
+                .collect(Collectors.groupingBy(d -> d.getDay()));
+                
         Map<Integer, Map<Integer, List<Date>>> r4 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
                 .collect(Collectors.groupingBy(Date::getMonth, Collectors.groupingBy(Date::getDay)));
                 
@@ -155,9 +171,8 @@ public class StreamDemo1
         
         list.forEach(System.out::println);
         
-        
         List<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
-        Integer t = (Integer) primes.stream().filter(i -> i == 13).findFirst().orElse(null);
+        Integer t = primes.stream().filter(i -> i == 13).findFirst().orElse(null);
         System.out.println(t);
     }
     
