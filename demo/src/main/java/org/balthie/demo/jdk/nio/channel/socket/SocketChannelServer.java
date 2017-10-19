@@ -9,6 +9,12 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
+/**
+ * @author：balthie@126.com
+ * @createtime ： 2017年10月19日 下午5:23:46
+ * @description TCP连接NIO实现
+ * @since version 初始于版本 TODO
+ */
 public class SocketChannelServer
 {
     // 通道管理器
@@ -67,17 +73,17 @@ public class SocketChannelServer
                 // 客户端请求事件
                 if(key.isAcceptable())
                 {
-                    ServerSocketChannel server = (ServerSocketChannel) key.channel();
+                    ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
                     // 获得和客户端连接的通道
-                    SocketChannel channel = server.accept();
+                    SocketChannel clientChannel = serverChannel.accept();
                     // 设置成非阻塞
-                    channel.configureBlocking(false);
+                    clientChannel.configureBlocking(false);
                     
                     // 异步写消息到buffer中，buffer中的数据由 （???）在 (???)时通过socket发送
-                    channel.write(ByteBuffer.wrap(new String("向客户端发送了一条信息").getBytes()));
+                    clientChannel.write(ByteBuffer.wrap(new String("向客户端发送了一条信息").getBytes()));
                     // 向客户端的socket channel注册可读事件，让客户端触发读取数据操作
-                    channel.register(this.selector, SelectionKey.OP_READ);
-                    System.out.println("server.accept() SocketChannel " + channel);
+                    clientChannel.register(this.selector, SelectionKey.OP_READ);
+                    System.out.println("server.accept() clientChannel " + clientChannel);
                     // 获得了可读的事件
                 }
                 else if(key.isReadable())
