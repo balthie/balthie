@@ -17,39 +17,50 @@ public class FileChannelTest
 {
     public static void main(String[] args) throws IOException
     {
-        // read();
-        write();
+        read();
+//        write();
     }
     
     private static void read() throws IOException
     {
-        RandomAccessFile aFile = new RandomAccessFile("D://queryFriendTopic", "rw");
-        FileChannel inChannel = aFile.getChannel();
-        ByteBuffer buf = ByteBuffer.allocate(48);
-        
-        // 从数据源加载到缓存区
-        int bytesRead = inChannel.read(buf);
-        while (bytesRead != -1)
+        try (RandomAccessFile aFile = new RandomAccessFile("D://queryFriendTopic", "rw");
+                FileChannel inChannel = aFile.getChannel();)
         {
-            System.out.println("Read " + bytesRead);
-            buf.flip();
-            while (buf.hasRemaining())
-            {
-                System.out.print((char) buf.get());
-            }
-            buf.clear();
+        
+//        try (FileInputStream fin = new FileInputStream(new File("").createTempFile("Prefix", "suffix"));)
+//        {
+//            fin.read("d:\\test.txt".getBytes());
+//            FileChannel inChannel = fin.getChannel();
             
-            // 继续从数据源加载到缓存区
-            bytesRead = inChannel.read(buf);
+            ByteBuffer buf = ByteBuffer.allocate(48);
+            
+            // 从数据源加载到缓存区
+            int bytesRead = -1;
+            do
+            {
+                // 继续从数据源加载到缓存区
+                bytesRead = inChannel.read(buf);
+                if(bytesRead != -1)
+                {
+                    System.out.println("Read " + bytesRead);
+                    buf.flip();
+                    while (buf.hasRemaining())
+                    {
+                        System.out.print((char) buf.get());
+                    }
+                    buf.clear();
+                }
+            }
+            while (bytesRead != -1);
         }
-        aFile.close();
     }
     
     public static void write() throws IOException
     {
+        int capacity = 48;
         StringBuilder newData = new StringBuilder("New String to write to file...");
         
-        // 超过48byte的数据,报错 java.nio.BufferOverflowException
+        // 超过 capacity byte的数据,报错 java.nio.BufferOverflowException
         for(int i = 0; i < 2; i++)
         {
             newData.append(System.currentTimeMillis());
@@ -57,7 +68,7 @@ public class FileChannelTest
         
         RandomAccessFile aFile = new RandomAccessFile("D://fileChannelOut.txt", "rw");
         FileChannel outChannel = aFile.getChannel();
-        ByteBuffer buf = ByteBuffer.allocate(48);
+        ByteBuffer buf = ByteBuffer.allocate(capacity);
         buf.clear();
         buf.put(newData.toString().getBytes());
         buf.flip();
