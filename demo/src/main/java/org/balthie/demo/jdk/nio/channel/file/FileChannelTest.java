@@ -7,12 +7,6 @@ import java.nio.channels.FileChannel;
 
 //http://ifeve.com/file-channel/
 // FileChannel 无法设置为非堵塞式
-/**
- * @author：balthie@126.com
- * @createtime ： 2017年10月19日 下午5:23:37
- * @description TODO 一句话描述
- * @since version 初始于版本 TODO
- */
 public class FileChannelTest
 {
     public static void main(String[] args) throws IOException

@@ -30,36 +30,42 @@ public class BufferBase
             
             ByteBuffer buf = ByteBuffer.allocate(5);
             printbuf("allocate", buf);
-            
-            buf.clear();
-            printbuf("clear", buf);
-            
-            readOnce(fc, buf);
-            
-            // 清理buf，使buf可重入数据
-            buf.clear();
-            printbuf("clear", buf);
+            // 手动设置buf内容
+//            buf.put(new byte[]{1,2,4,2,-13});
             
             readOnce(fc, buf);
+            
+            // 清理buf， 将position置为0，将limit置为capacity, 使buf可重入数据
+//            buf.clear();
+//            printbuf("clear", buf);
+            
+            // 是将position置为0，这样一来就可以将buffer再重新读一遍
+            buf.rewind();
+            printbuf("rewind", buf);
+            readOnce(fc, buf);
+            
         }
         
     }
     
     private static void readOnce(FileChannel fc, ByteBuffer buf) throws IOException
     {
+        
         // 向buf写入数据
         int readbyte = fc.read(buf);
         System.out.println("read byte " + readbyte);
         printbuf("FileChannel read to buf", buf);
         
+        // 将limit设为position的值，再是将position设为0
         buf.flip();
         printbuf("buf flip ", buf);
         while (buf.hasRemaining())
         {
-            System.out.print((byte) buf.get());
+            System.out.print((char) buf.get() + "    ");
             printbuf("buf get ", buf);
         }
         System.out.println("            [printbuf end]");
+        
     }
     
     public static void printbuf(String prefix, ByteBuffer buf)
