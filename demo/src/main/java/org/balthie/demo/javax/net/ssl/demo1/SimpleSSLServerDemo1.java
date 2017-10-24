@@ -33,7 +33,7 @@ public class SimpleSSLServerDemo1
         String ident = null;
         BufferedReader reader = null;
         PrintWriter writer = null;
-        while(true)
+        while (true)
         {
             ident = String.valueOf(identity++);
             
@@ -47,8 +47,7 @@ public class SimpleSSLServerDemo1
             {
                 System.out.println("Accept the Client: " + socket);
                 
-                // ����IO���
-                reader= new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                 
                 while (true)

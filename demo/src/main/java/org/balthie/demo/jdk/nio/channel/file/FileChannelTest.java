@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 //http://ifeve.com/file-channel/
-// FileChannel 无法设置为非堵塞式
+// FileChannel 无法设置为非堵塞式, 与Selector一起使用时，Channel必须处于非阻塞模式下。这意味着不能将FileChannel与Selector一起使用，因为FileChannel不能切换到非阻塞模式。
 public class FileChannelTest
 {
     public static void main(String[] args) throws IOException
