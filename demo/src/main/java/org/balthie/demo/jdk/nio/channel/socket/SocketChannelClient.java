@@ -134,10 +134,10 @@ public class SocketChannelClient
         if(msg.contains("exit"))
         {
             System.out.println("接收到服务器响应，客户端退出监听");
-//            channel.finishConnect();
-//            channel.close();
+            channel.finishConnect();
+            channel.close();
 //            this.selector.close();
-//            System.exit(0);
+            System.exit(0);
         }
     }
     

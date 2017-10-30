@@ -119,28 +119,45 @@ public class SocketChannelServer
      */
     public void read(SelectionKey key) throws IOException
     {
+        
         // 服务器可读取消息:得到事件发生的Socket通道
-        SocketChannel channel = (SocketChannel) key.channel();
-        // 创建读取的缓冲区
-        ByteBuffer buffer = ByteBuffer.allocate(100);
-        // 客户端退出时 （channel.close 或者system.exit 都会将client可以状态更新为 readyOps[1]，并且抛出异常
-        // java.io.IOException: 远程主机强迫关闭了一个现有的连接。）
-        channel.read(buffer);
-        byte[] data = buffer.array();
-        String msg = new String(data, "UTF-8").trim();
-        System.out.println("receive msg " + msg);
-        if(msg.indexOf("[") != -1)
+        try (SocketChannel channel = (SocketChannel) key.channel();)
         {
-            String clientName = msg.substring(msg.indexOf("["), msg.indexOf("]"));
-            msg = "你好" + clientName + " 服务端收到你信息";
+            System.out
+                    .println(String.format(" key readyOps[%s] isValid[%s] ", key.readyOps(), key.isValid()));
+                    
+            // 创建读取的缓冲区
+            ByteBuffer buffer = ByteBuffer.allocate(100);
+            // 客户端退出时 （channel.close 或者system.exit 都会将client可以状态更新为 readyOps[1]，并且抛出异常
+            // java.io.IOException: 远程主机强迫关闭了一个现有的连接。）
+            // “OP_READ 事件不仅仅只有可读时才触发，当channel中数据读完, 远程的另一端被关闭, 有一个错误的pending都会触发OP_READ事件"!
+            int readBytes = channel.read(buffer);
+            System.out.println(String.format("read channel[%s] readBytes[%s]", channel, readBytes));
+            // 此处必须判断是否读已读完channel数据，并手工关闭key，否则会循环触发 channel上的 op_read事件
+            if(readBytes < 0)
+            {
+                key.cancel();
+                // http://dennis-zane.iteye.com/blog/204969
+                // http://www.blogjava.net/killme2008/archive/2014/11/26/296826.html
+                this.selector.selectNow();
+//                channel.close();
+            }
+            
+            byte[] data = buffer.array();
+            String msg = new String(data, "UTF-8").trim();
+            System.out.println("receive msg " + msg);
+            if(msg.indexOf("[") != -1)
+            {
+                String clientName = msg.substring(msg.indexOf("["), msg.indexOf("]"));
+                msg = "你好" + clientName + " 服务端收到你信息";
+            }
+            System.out.println("res msg " + msg);
+            
+            ByteBuffer outBuffer = ByteBuffer.wrap(msg.getBytes());
+            channel.write(outBuffer);// 将消息回送给客户端
+            channel.write(ByteBuffer.wrap("exit".getBytes()));// 同时发送两条将消息回送给客户端
         }
-        System.out.println("res msg " + msg);
         
-        ByteBuffer outBuffer = ByteBuffer.wrap(msg.getBytes());
-//        channel.write(outBuffer);// 将消息回送给客户端
-        channel.write(ByteBuffer.wrap("exit".getBytes()));// 同时发送两条将消息回送给客户端
-        
-        System.out.println(String.format(" key readyOps[%s]", key.readyOps()));
     }
     
     /**
