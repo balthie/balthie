@@ -112,8 +112,13 @@ public class StreamDemo1
                 
         Double r5 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
                 .collect(Collectors.averagingLong(Date::getTime));
-    }
-    
+                
+        Map<Integer, Date> r6 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
+                .collect(Collectors.toMap(Date::getDate, d -> d));
+        /*
+         * https://www.cnblogs.com/xujanus/p/6133865.html
+         */ }
+        
     // count方法是一个流的终点方法，可使流的结果最终统计，返回int
     private void count(List<Date> list)
     {
