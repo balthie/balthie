@@ -28,15 +28,15 @@ public class StreamDemo1
         long range = 1000;
         List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 1000 + now)).collect(Collectors.toList());
         System.out.println(list.size());
-        new StreamDemo1().sortedDemo(now);
-        
+//        new StreamDemo1().sortedDemo(now);
+
 //        new StreamDemo1().filter(list);
 //        
 //        new StreamDemo1().map(list);
 //        
 //        new StreamDemo1().count(list);
 //        
-//        new StreamDemo1().collect(list);
+        new StreamDemo1().collect(list);
 //        
 //        new StreamDemo1().reduce();
 //        
@@ -113,12 +113,18 @@ public class StreamDemo1
         Double r5 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
                 .collect(Collectors.averagingLong(Date::getTime));
                 
+        // https://www.cnblogs.com/xujanus/p/6133865.html
+        // 如果list中的key有重复，会抛出异常 java.lang.IllegalStateException: Duplicate key
+        // 模拟一个重复的key list.add(list.get(0));
         Map<Integer, Date> r6 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
                 .collect(Collectors.toMap(Date::getDate, d -> d));
-        /*
-         * https://www.cnblogs.com/xujanus/p/6133865.html
-         */ }
-        
+                
+        // 模拟一个重复的key
+        list.add(list.get(0));
+        Map<Integer, Date> r7 = list.stream().filter(d -> d.getTime() < System.currentTimeMillis())
+                .collect(Collectors.toMap(Date::getDate, d -> d, (d1, d2) -> d2));
+    }
+    
     // count方法是一个流的终点方法，可使流的结果最终统计，返回int
     private void count(List<Date> list)
     {
