@@ -21,6 +21,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <testng.selenium.endpoint>https://google.com</testng.selenium.endpoint>
+    <spring.version>4.3.6.RELEASE</spring.version>
+    <testng.version>6.8.21</testng.version>
   </properties>
 
   <dependencies>
@@ -58,6 +60,19 @@
       <version>0.10.0</version>
       <scope>test</scope>
     </dependency>
+    
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+         <version>${spring.version}</version>
+     </dependency>
+
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-test</artifactId>
+         <version>${spring.version}</version>
+     </dependency>
+    
   </dependencies>
 
   <build>
