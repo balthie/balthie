@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="parameterized suite">
+  <test verbose="2" name="Default test">
+    <listeners>
+        <listener class-name="balthie.demo.testNGDemo.listener.IAnnotationTransformerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IAnnotationTransformer2Demo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IHookableDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IInvokedMethodListenerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IMethodInterceptorDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.ISuiteListenerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.ITestListenerDemo" />
+  	</listeners>
+  	<classes>
+   		<class name = "balthie.demo.testNGDemo.base.TestNGLearn1" >
+   		</class>
+   	</classes>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite -->

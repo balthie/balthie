@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="parameterized suite">
+  <echo  message="Start parameterized suite" />
+  <echo  message="2 parameter use last" />
+  <parameter name="test1" value="Tank" />
+  <parameter name="test1" value="Xiao" />
+  <test verbose="2" name="Default test">
+  	<classes>
+   		<class name = "balthie.demo.testNGDemo.base.TestNGLearn2" >
+ 	        <methods>
+ 	        	<include name="paramTest"/>
+ 	        </methods>
+   		</class>
+   	</classes>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite -->
