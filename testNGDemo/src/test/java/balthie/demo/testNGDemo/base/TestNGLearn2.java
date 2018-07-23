@@ -1,5 +1,8 @@
 package balthie.demo.testNGDemo.base;
 
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -10,9 +13,10 @@ public class TestNGLearn2
 {
     
     @Test
-    public void testNgLearn()
+    public void testNgLearn(ITestContext itc)
     {
         System.out.println("this is TestNGLearn2 case");
+        System.out.println("this is TestNGLearn2 inject ITestContext " + itc);
     }
     
     @Test(groups = { "someGroup" })
@@ -35,14 +39,17 @@ public class TestNGLearn2
      *              第二种：@DataProvider能够提供比较复杂的参数。 (也叫data-driven testing)
      */
     @Test
+    // 通过@Parameters可以声明多个参数，只要与测试方法的参数一一对应即可。如果参数不对应则在执行测试的时候会抛出异常。
     @Parameters("test1")
-    public void paramTest(@Optional("use defualt") String test1)
+    public void paramTest(@Optional("use defualt") String anyName)
     {
         // 配置文件方式，同一个参数，只能设置一次，最后一次设置的值生效，不支持自动多次执行
-        System.out.println("paramTest This is " + test1);
+        System.out.println("paramTest This is " + anyName);
     }
     
     // The annotated method must return an Object[][]
+    // requires a @DataProvider named : user, @DataProvider 必须和 @Test(dataProvider = 的测试方法，在同一个测试类当中
+    // 否则就需要指定 dataProviderClass属性，并且 provider 方法必须为静态
     @DataProvider(name = "user")
     public Object[][] Users()
     {
@@ -65,5 +72,17 @@ public class TestNGLearn2
     public void testIgnore()
     {
         System.out.println("This test case will ignore");
+    }
+    
+    @BeforeSuite
+    public void beforeSuite()
+    {
+        System.out.println("this is TestNGLearn2 beforeSuite");
+    }
+    
+    @BeforeClass
+    public void beforeClass()
+    {
+        System.out.println("this is TestNGLearn2 before class");
     }
 }

@@ -9,5 +9,6 @@
     ">
 
     <context:component-scan base-package="org.balthie.testng.spring" />
+    <context:component-scan base-package="common.spring" />
 
 </beans>

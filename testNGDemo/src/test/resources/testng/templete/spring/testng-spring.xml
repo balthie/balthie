@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="testng spring suite">
-  <test verbose="3" name="Default test"  preserve-order="true">
+  <test verbose="10" name="Default test"  preserve-order="true">
     <packages>  
       <package name="org.balthie.testng.spring" />  
    	</packages> 

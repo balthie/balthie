@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testng spring suite">
+  <test verbose="2" name="Default test"  preserve-order="true">
+   	<groups>
+  		<run>
+			<include name="springGroup"/>
+			<!-- <exclude name="someGroup"/>	 -->
+  		</run>
+  	</groups>
+  	
+  	<classes>
+   		<class name = "org.balthie.testng.spring.SomeServiceTest" /> <!-- 在哪个类中执行以上groups -->
+   		<class name = "org.balthie.testng.spring.SomeServiceTest2" />
+   	</classes>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite -->

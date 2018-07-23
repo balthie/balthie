@@ -3,7 +3,7 @@
 <suite name="MyArtifactSuite"
        thread-count="3"
        parallel="methods">
-  <test name="AllSuites">
+  <test name="AllSuites" >
     <packages>
       <package name=".*"/>
     </packages>

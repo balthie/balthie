@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import balthie.demo.testNGDemo.listener.IAnnotationTransformerDemo;
@@ -32,19 +33,19 @@ public class TestNGLearn1
     @BeforeSuite
     public void beforeSuite()
     {
-        System.out.println("this is beforeSuite");
+        System.out.println("this is TestNGLearn1 beforeSuite");
     }
     
     @AfterSuite
     public void afterSuite()
     {
-        System.out.println("this is afterSuite");
+        System.out.println("this is TestNGLearn1 afterSuite");
     }
     
     @BeforeClass
     public void beforeClass()
     {
-        System.out.println("this is before class");
+        System.out.println("this is TestNGLearn1 before class");
     }
     
     @BeforeMethod
@@ -75,6 +76,21 @@ public class TestNGLearn1
     public void TestNgDependency()
     {
         System.out.println("this is TestNgDependency case");
+    }
+    
+    @DataProvider(name = "user")
+    public Object[][] Users()
+    {
+        System.out.println(" @DataProvider Users begin ");
+        return new Object[][] {
+                { "tank", "xiao" }
+        };
+    }
+    
+    @Test(dataProvider = "user", dependsOnMethods = { "TestNgLearn" })
+    public void verifyUser(String userName, String password)
+    {
+        System.out.println(" verifyUser Username begin ");
     }
     
     @AfterClass
