@@ -4,10 +4,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -21,13 +23,13 @@ public class TestNGLearn1
     @BeforeGroups(groups = { "someGroup" })
     public void beforeGroups()
     {
-        System.out.println("this is beforeGroups");
+        System.out.println("this is TestNGLearn1 beforeGroups");
     }
     
     @AfterGroups(groups = { "someGroup" })
     public void asfterGroups()
     {
-        System.out.println("this is AfterGroups");
+        System.out.println("this is TestNGLearn1 AfterGroups");
     }
     
     @BeforeSuite
@@ -48,22 +50,34 @@ public class TestNGLearn1
         System.out.println("this is TestNGLearn1 before class");
     }
     
+    @BeforeTest
+    public void beforeTest()
+    {
+        System.out.println("this is TestNGLearn1 @BeforeTest");
+    }
+    
+    @AfterTest
+    public void afterTest()
+    {
+        System.out.println("this is TestNGLearn1 @AfterTest");
+    }
+    
     @BeforeMethod
     public void beforeMethod()
     {
-        System.out.println("this is beforeMethod");
+        System.out.println("this is TestNGLearn1 beforeMethod");
     }
     
     @AfterMethod
     public void afterMethod()
     {
-        System.out.println("this is afterMethod");
+        System.out.println("this is TestNGLearn1 afterMethod");
     }
     
     @Test
     public void TestNgLearn()
     {
-        System.out.println("this is TestNG test case");
+        System.out.println("this is test case");
     }
     
     @Test(groups = { "someGroup" })
@@ -96,6 +110,6 @@ public class TestNGLearn1
     @AfterClass
     public void afterClass()
     {
-        System.out.println("this is after class");
+        System.out.println("this is TestNGLearn1 after class");
     }
 }
