@@ -2,6 +2,7 @@ package org.balthie.demo.jdk.util.stream;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.IntSummaryStatistics;
@@ -28,15 +29,16 @@ public class StreamDemo1
         long range = 1000;
         List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 1000 + now)).collect(Collectors.toList());
         System.out.println(list.size());
-//        new StreamDemo1().sortedDemo(now);
-
+        
+        new StreamDemo1().sortedDemo(now);
+        
 //        new StreamDemo1().filter(list);
 //        
 //        new StreamDemo1().map(list);
 //        
 //        new StreamDemo1().count(list);
 //        
-        new StreamDemo1().collect(list);
+//        new StreamDemo1().collect(list);
 //        
 //        new StreamDemo1().reduce();
 //        
@@ -52,11 +54,46 @@ public class StreamDemo1
         System.out.println("排序前");
         list.stream().forEach(System.out::println);
         
-        Stream<Date> sortedStream = list.stream().sorted((d1, d2) -> (int) (d2.getTime() - d1.getTime()));
-        System.out.println("排序后的新流对象");
-        sortedStream.forEach(System.out::println);
-        System.out.println("排序后的原list");
-        list.stream().forEach(System.out::println);
+        System.out.println("_________________ intList sorted begin  ____________________");
+        List<Integer> intList = new ArrayList<Integer>();
+        intList.add(Integer.MIN_VALUE);
+        intList.add(0);
+        intList.add(1);
+        intList.add(Integer.MAX_VALUE);
+        intList.add(Integer.MIN_VALUE + 555);
+        intList.add(1000);
+        intList.add(-1000);
+        System.out.println("_________________ intList original  ____________________");
+        intList.stream().forEach(System.out::println);
+        System.out.println("_________________ intList stream().sorted  ____________________");
+        
+        Stream<Integer> intListSortedStream = intList.stream()
+                .sorted((d1, d2) -> (d2 - d1));
+        intListSortedStream.forEach(System.out::println);
+        System.out.println("_________________ intList List.sort  ____________________");
+        intList.sort((d1, d2) -> (d2 - d1));
+        intList.stream().forEach(System.out::println);
+        
+        System.out.println("_________________ orderedBeanList sorted begin  ____________________");
+        List<OrderedBean> orderedBeanList = new ArrayList<OrderedBean>();
+        orderedBeanList.add(new OrderedBean(Integer.MAX_VALUE));
+        orderedBeanList.add(new OrderedBean(0));
+        orderedBeanList.add(new OrderedBean(1));
+        orderedBeanList.add(new OrderedBean(-1));
+        orderedBeanList.add(new OrderedBean(Integer.MIN_VALUE));
+        orderedBeanList.add(new OrderedBean(Integer.MIN_VALUE + 1));
+        orderedBeanList.add(new OrderedBean(1000));
+        orderedBeanList.add(new OrderedBean(-1000));
+        System.out.println("_________________ orderedBeanList original  ____________________");
+        orderedBeanList.stream().forEach(System.out::println);
+        System.out.println("_________________ orderedBeanList stream().sorted  ____________________");
+        
+        Stream<OrderedBean> orderedBeanSortedStream = orderedBeanList.stream()
+                .sorted((d1, d2) -> (d2.getOrder() - d1.getOrder()));
+        orderedBeanSortedStream.forEach(System.out::println);
+        System.out.println("_________________ orderedBeanList List.sort  ____________________");
+        orderedBeanList.sort((d1, d2) -> (d2.getOrder() - d1.getOrder()));
+        orderedBeanList.stream().forEach(System.out::println);
     }
     
     // 计算List中的元素的最大值，最小值，总和及平均值
