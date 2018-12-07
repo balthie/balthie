@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -30,9 +31,11 @@ public class StreamDemo1
         List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 1000 + now)).collect(Collectors.toList());
         System.out.println(list.size());
         
+        System.out.println(Integer.MIN_VALUE - 1);
+        
         new StreamDemo1().sortedDemo(now);
         
-//        new StreamDemo1().filter(list);
+        new StreamDemo1().filter(list);
 //        
 //        new StreamDemo1().map(list);
 //        
@@ -42,8 +45,15 @@ public class StreamDemo1
 //        
 //        new StreamDemo1().reduce();
 //        
-//        new StreamDemo1().summaryStatistics();
-    
+        new StreamDemo1().summaryStatistics();
+        
+        Stream.of("one", "two", "three", "four")
+                .filter(e -> e.length() > 3)
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+                
     }
     
     private void sortedDemo(Long now)
@@ -66,10 +76,15 @@ public class StreamDemo1
         System.out.println("_________________ intList original  ____________________");
         intList.stream().forEach(System.out::println);
         System.out.println("_________________ intList stream().sorted  ____________________");
-        
         Stream<Integer> intListSortedStream = intList.stream()
-                .sorted((d1, d2) -> (d2 - d1));
+                .sorted((d1, d2) -> Integer.compare(d2, d1));
         intListSortedStream.forEach(System.out::println);
+        
+        System.out.println("_________________ intList stream().sorted  Comparator ____________________");
+        intListSortedStream = intList.stream()
+                .sorted(Comparator.comparing(Integer::intValue));
+        intListSortedStream.forEach(System.out::println);
+        
         System.out.println("_________________ intList List.sort  ____________________");
         intList.sort((d1, d2) -> (d2 - d1));
         intList.stream().forEach(System.out::println);
@@ -89,7 +104,12 @@ public class StreamDemo1
         System.out.println("_________________ orderedBeanList stream().sorted  ____________________");
         
         Stream<OrderedBean> orderedBeanSortedStream = orderedBeanList.stream()
-                .sorted((d1, d2) -> (d2.getOrder() - d1.getOrder()));
+                .sorted((d1, d2) -> Integer.compare(d2.getOrder(), d1.getOrder()));
+        orderedBeanSortedStream.forEach(System.out::println);
+        
+        System.out.println("_________________ intList stream().sorted  Comparator ____________________");
+        orderedBeanSortedStream = orderedBeanList.stream()
+                .sorted(Comparator.comparing(OrderedBean::getOrder));
         orderedBeanSortedStream.forEach(System.out::println);
         System.out.println("_________________ orderedBeanList List.sort  ____________________");
         orderedBeanList.sort((d1, d2) -> (d2.getOrder() - d1.getOrder()));
