@@ -1,13 +1,20 @@
-/target/
-/.classpath
-/.settings/
+#ignore
+.classpath
+.project
+.factorypath
+target
+test-output
+.settings
+/*/disconf/download
+*.log
 
-#ignore all
-*
+
 #exclusive
 !src/
+!resources/
 !pom.xml
 !.gitignore
-!component-*/
-!viomi-*/
-!service-*/
+!Scripts/
+!Jenkinsfile
+!*.json
+!java

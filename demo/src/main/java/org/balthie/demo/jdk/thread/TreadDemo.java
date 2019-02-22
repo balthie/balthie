@@ -9,5 +9,7 @@ public class TreadDemo
         {
             System.out.println(ele);
         }
+        
+        ThreadLocal<String> tl = new ThreadLocal<>();
     }
 }

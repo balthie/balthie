@@ -4,4 +4,5 @@ encoding//src/main/java/org/balthie/demo/jdk/lang/string=UTF-8
 encoding//src/main/java/org/balthie/demo/jdk/lang/system=GBK
 encoding//src/main/java/org/balthie/demo/jdk/lang/system/RuntimeCallCMDDemo.java=GBK
 encoding//src/main/java/org/balthie/demo/my/json/jackson2/xml/JacksonXMLTest.java=UTF-8
+encoding//src/main/resources/log4j.properties=UTF-8
 encoding//src/test/java=UTF-8
