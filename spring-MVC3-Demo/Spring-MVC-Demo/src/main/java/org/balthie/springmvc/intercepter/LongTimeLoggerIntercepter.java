@@ -35,7 +35,6 @@ public class LongTimeLoggerIntercepter extends HandlerInterceptorAdapter
         if(consumeTime > 500)
         {
             // 此处认为处理时间超过500毫秒的请求为慢请求, 记录到日志文件
-            System.out.println(String.format("%s consume %d millis", request.getRequestURI(), consumeTime));
             LOGGER.info(String.format("%s consume %d millis", request.getRequestURI(), consumeTime));
             super.afterCompletion(request, response, handler, ex);
         }

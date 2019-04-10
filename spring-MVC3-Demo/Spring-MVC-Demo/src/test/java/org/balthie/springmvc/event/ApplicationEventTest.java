@@ -8,7 +8,7 @@ public class ApplicationEventTest extends BaseSpringTest
     @Test
     public void mainTest()
     {
-        System.out.println(String.format(" ApplicationEventTest invoke event [%s] at [%d]", "ApplicationEventTest", System.currentTimeMillis()));
-        super.applicationContext.publishEvent(new CustomizedEvent("ApplicationEventTest"));
+//        System.out.println(String.format(" ApplicationEventTest invoke event [%s] at [%d]", "ApplicationEventTest", System.currentTimeMillis()));
+//        super.applicationContext.publishEvent(new CustomizedEvent("ApplicationEventTest"));
     }
 }

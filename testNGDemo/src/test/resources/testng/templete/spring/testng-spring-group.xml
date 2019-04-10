@@ -2,6 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="testng spring suite">
   <test verbose="2" name="Default test"  preserve-order="true">
+    <listeners>
+        <listener class-name="balthie.demo.testNGDemo.listener.IAnnotationTransformerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IAnnotationTransformer2Demo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IHookableDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IInvokedMethodListenerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.IMethodInterceptorDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.ISuiteListenerDemo" />
+        <listener class-name="balthie.demo.testNGDemo.listener.ITestListenerDemo" />
+  	</listeners>
    	<groups>
   		<run>
 			<include name="springGroup"/>

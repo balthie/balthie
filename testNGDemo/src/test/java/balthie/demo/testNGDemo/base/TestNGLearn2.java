@@ -15,6 +15,7 @@ public class TestNGLearn2
     @Test
     public void testNgLearn(ITestContext itc)
     {
+        itc.getAttribute("");
         System.out.println("this is TestNGLearn2 case");
         System.out.println("this is TestNGLearn2 inject ITestContext " + itc);
     }
@@ -39,7 +40,7 @@ public class TestNGLearn2
      *              第二种：@DataProvider能够提供比较复杂的参数。 (也叫data-driven testing)
      */
     @Test
-    // 通过@Parameters可以声明多个参数，只要与测试方法的参数一一对应即可。如果参数不对应则在执行测试的时候会抛出异常。
+    // 通过@Parameters可以声明多个参数，只要与测试方法的参数索引和数量对应即可。如果参数不对应则在执行测试的时候会抛出异常。
     @Parameters("test1")
     public void paramTest(@Optional("use defualt") String anyName)
     {

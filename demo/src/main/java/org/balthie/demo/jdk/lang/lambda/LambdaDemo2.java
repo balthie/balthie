@@ -1,6 +1,7 @@
 package org.balthie.demo.jdk.lang.lambda;
 
 import java.util.Date;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 // 构造函数 和  supplier 接口
@@ -20,6 +21,8 @@ public class LambdaDemo2
         
         Converter<String, Integer> converter = Integer::valueOf;
         Converter<String, Integer> converter2 = (from) -> Integer.valueOf(from);
+        
+        Consumer<Long> c = System.out::println; 
     }
     
     @FunctionalInterface
