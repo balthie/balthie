@@ -29,6 +29,9 @@ public class JDKProxyDemo implements InvocationHandler
     {
         Object result = null;
         
+        System.out.println("proxy obj = " + proxy.getClass());
+        System.out.println("this obj = " + this);
+//        Proxy
 //        System.out.println("预处理操作——————");
         // 调用真正的业务方法
         result = method.invoke(target, args);

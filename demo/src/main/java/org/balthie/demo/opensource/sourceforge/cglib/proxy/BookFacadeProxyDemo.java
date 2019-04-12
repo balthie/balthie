@@ -12,11 +12,16 @@ public class BookFacadeProxyDemo implements BookFacade
     
     public static void main(String[] args)
     {
-        original();
+        BookFacadeProxyDemo bookFacadeImpl = new BookFacadeProxyDemo();
+        JDKProxyDemo proxy = new JDKProxyDemo();
+        BookFacade bookfacade = (BookFacade) proxy.bind(bookFacadeImpl);
+        bookfacade.addBook();
         
-        cglibTest();
+//        original();
         
-        jdkProxyTest();
+//        cglibTest();
+        
+//        jdkProxyTest();
     }
     
     public static void jdkProxyTest()
