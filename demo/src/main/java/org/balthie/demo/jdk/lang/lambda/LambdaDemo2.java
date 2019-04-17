@@ -19,6 +19,7 @@ public class LambdaDemo2
         MyInterface2 j = Date::new;
         System.out.println(j.getMeMyObject(12367890123456L));
         
+        
         Converter<String, Integer> converter = Integer::valueOf;
         Converter<String, Integer> converter2 = (from) -> Integer.valueOf(from);
         
