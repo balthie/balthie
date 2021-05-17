@@ -29,11 +29,11 @@ public class StreamDemo1
         Long now = System.currentTimeMillis();
         long range = 1000;
         List<Date> list = LongStream.range(0L, range).mapToObj(l -> new Date(l * 1000 + now)).collect(Collectors.toList());
-        System.out.println(list.size());
-        
-        System.out.println(Integer.MIN_VALUE - 1);
-        
-        new StreamDemo1().sortedDemo(now);
+//        System.out.println(list.size());
+//        
+//        System.out.println(Integer.MIN_VALUE - 1);
+//        
+//        new StreamDemo1().sortedDemo(now);
         
         new StreamDemo1().filter(list);
 //        
@@ -45,15 +45,15 @@ public class StreamDemo1
 //        
 //        new StreamDemo1().reduce();
 //        
-        new StreamDemo1().summaryStatistics();
-        
-        Stream.of("one", "two", "three", "four")
-                .filter(e -> e.length() > 3)
-                .peek(e -> System.out.println("Filtered value: " + e))
-                .map(String::toUpperCase)
-                .peek(e -> System.out.println("Mapped value: " + e))
-                .collect(Collectors.toList());
-                
+//        new StreamDemo1().summaryStatistics();
+//        
+//        Stream.of("one", "two", "three", "four")
+//                .filter(e -> e.length() > 3)
+//                .peek(e -> System.out.println("Filtered value: " + e))
+//                .map(String::toUpperCase)
+//                .peek(e -> System.out.println("Mapped value: " + e))
+//                .collect(Collectors.toList());
+//                
     }
     
     private void sortedDemo(Long now)
@@ -242,6 +242,9 @@ public class StreamDemo1
         List<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
         Integer t = primes.stream().filter(i -> i == 13).findFirst().orElse(null);
         System.out.println(t);
+        
+        List<Long> llist = primes.stream().filter(i -> i == 133).map(i-> new Long(i)).collect(Collectors.toList());
+        System.out.println(llist);
     }
     
 }
